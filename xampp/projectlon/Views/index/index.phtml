@@ -1,0 +1,295 @@
+	<!-- section -->	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+				<div class="row">
+				<?php  ?>
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title"><?= $this->views->theloai_sach1["ten_the_loai"]  ?></h2>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="banner banner-2">
+						<img src="Public/image/img6.jpg" alt="" style="height: 481px;">
+						<div class="banner-caption">
+							<h2 class="white-color">NEW<br>COLLECTION</h2>
+							<button class="primary-btn">Shop Now</button>
+						</div>
+					</div>
+				</div>
+                <?php foreach ($this->views->sach1 as $key1 => $value1) {
+                           $images_url = base_path.'Public/image/'.$value1['hinh_anh'];
+                           $giamgia = ceil((100 - (($value1["gia_ban"]/$value1["gia_goc"])*100)));
+                ?>
+
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="product product-single">
+						<div class="product-thumb">
+							<div class="product-label">
+								<span>New</span>
+								<span class="sale">-<?= $giamgia ?>%</span>
+							</div>
+							<a href="?controller=trangphu-sanpham&action=chitietsanpham&id=<?= $value1['id'] ?>"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button></a>
+							<img src="<?= $images_url ?>" alt="">
+						</div>
+						<div class="product-body">
+							<h3 class="product-price"><?= number_format($value1["gia_ban"]) ?> <del class="product-old-price"><?= number_format($value1["gia_goc"]) ?></del></h3>
+							<div class="product-rating">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star-o empty"></i>
+							</div>
+							<h2 class="product-name"><a href="?controller=trangphu-sanpham&action=chitietsanpham&id=<?= $value1['id'] ?>"><?= $value1["ten_sach"] ?></a></h2>
+							<div class="product-btns">
+								<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+								<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+								<a href="?action=add_cart&id=<?=$value1['id']?>"><button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php } ?>
+				<!-- /Product Single -->
+			</div>
+
+
+
+			<!-- row -->
+		<div class="row">
+				<!-- section title -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title"><?= $this->views->theloai_sach2["ten_the_loai"] ?></h2>
+					</div>
+				</div>
+				  <?php foreach ($this->views->sach2 as $key2 => $value2) {
+                           $images_url = base_path.'Public/image/'.$value2['hinh_anh'];
+                           $giamgia = ceil((100 - (($value2["gia_ban"]/$value2["gia_goc"])*100)));
+                ?>
+		
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="product product-single">
+						<div class="product-thumb">
+							<div class="product-label">
+								<span>New</span>
+								<span class="sale">-<?= $giamgia ?>%</span>
+							</div>
+							<a href="?controller=trangphu-sanpham&action=chitietsanpham&id=<?= $value2['id'] ?>"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button></a>
+							<img src="<?= $images_url ?>" alt="">
+						</div>
+						<div class="product-body">
+							<h3 class="product-price"><?= number_format($value2["gia_ban"]) ?><del class="product-old-price"><?= number_format($value2["gia_goc"]) ?></del></h3>
+							<div class="product-rating">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star-o empty"></i>
+							</div>
+							<h2 class="product-name"><a href="?controller=trangphu-sanpham&action=chitietsanpham&id=<?= $value2['id'] ?>"><?= $value2["ten_sach"] ?></a></h2>
+							<div class="product-btns">
+								<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+								<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+								<a href="?action=add_cart&id=<?=$value2['id']?>"><button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button></a>
+							</div>
+						</div>
+					</div>
+				</div>		
+			<?php } ?>
+				<!-- /Product Single -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+	<!-- section -->
+	<div class="section section-grey">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- banner -->
+				<div class="col-md-8">
+					<div class="banner banner-1">
+						<img src="Public/image/img7.jpg" alt="" style="height: 618px;">
+						<div class="banner-caption text-center">
+							<h1 class="primary-color">HOT DEAL<br><span class="white-color font-weak">Up to 50% OFF</span></h1>
+							<button class="primary-btn">Shop Now</button>
+						</div>
+					</div>
+				</div>
+				<!-- /banner -->
+				<!-- banner -->
+				<div class="col-md-4 col-sm-6">
+					<a class="banner banner-1" href="#">
+						<img src="Public/image/img6.jpg" alt="" style="height: 618px;">
+					</a>
+				</div>
+				<!-- /banner -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+
+
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- section title -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title"><?= $this->views->theloai_sach3["ten_the_loai"] ?></h2>
+					</div>
+				</div>
+                <?php foreach ($this->views->sach3 as $key3 => $value3) {
+                           $images_url = base_path.'Public/image/'.$value3['hinh_anh'];
+                           $giamgia = ceil((100 - (($value3["gia_ban"]/$value3["gia_goc"])*100)));
+                ?>
+
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="product product-single">
+						<div class="product-thumb">
+							<div class="product-label">
+								<span>New</span>
+								<span class="sale">-<?= $giamgia ?>%</span>
+							</div>
+							<a href="?controller=trangphu-sanpham&action=chitietsanpham&id=<?= $value3['id'] ?>"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button></a>
+							<img src="<?= $images_url ?>" alt="">
+						</div>
+						<div class="product-body">
+							<h3 class="product-price"><?= number_format($value3["gia_ban"]) ?> <del class="product-old-price"><?= number_format($value3["gia_goc"]) ?></del></h3>
+							<div class="product-rating">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star-o empty"></i>
+							</div>
+							<h2 class="product-name"><a href="?controller=trangphu-sanpham&action=chitietsanpham&id=<?= $value3['id'] ?>"><?= $value3["ten_sach"] ?></a></h2>
+							<div class="product-btns">
+								<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+								<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+								<a href="?action=add_cart&id=<?=$value3['id']?>"><button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php } ?>
+				<!-- /Product Single -->
+
+			</div>
+			<!-- /row -->
+
+			<!-- row -->
+			<div class="row">
+				<!-- banner -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="banner banner-2">
+						<img src="Public/image/img5.jpg" alt="" style="height: 481px;">
+						<div class="banner-caption">
+							<h2 class="white-color">NEW<br>COLLECTION</h2>
+							<button class="primary-btn">Shop Now</button>
+						</div>
+					</div>
+				</div>
+				<?php foreach ($this->views->sach3 as $key3 => $value3) {
+                           $images_url = base_path.'Public/image/'.$value3['hinh_anh'];
+                           $giamgia = ceil((100 - (($value3["gia_ban"]/$value3["gia_goc"])*100)));
+                ?>
+
+			<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="product product-single">
+						<div class="product-thumb">
+							<div class="product-label">
+								<span>New</span>
+								<span class="sale">-<?= $giamgia ?>%</span>
+							</div>
+							<a href="?controller=trangphu-sanpham&action=chitietsanpham&id=<?= $value3['id'] ?>"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button></a>
+							<img src="<?= $images_url ?>" alt="">
+						</div>
+						<div class="product-body">
+							<h3 class="product-price"><?= number_format($value3["gia_ban"]) ?> <del class="product-old-price"><?= number_format($value3["gia_goc"]) ?></del></h3>
+							<div class="product-rating">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star-o empty"></i>
+							</div>
+							<h2 class="product-name"><a href="?controller=trangphu-sanpham&action=chitietsanpham&id=<?= $value3['id'] ?>"><?= $value3["ten_sach"] ?></a></h2>
+							<div class="product-btns">
+								<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+								<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+							<a href="?action=add_cart&id=<?=$value3['id']?>"><button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php } ?>
+				<!-- /Product Single -->
+			</div>
+			<!-- /row -->
+
+
+
+
+
+			<!-- row -->
+			<div class="row">
+				<!-- section title -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title"><?= $this->views->theloai_sach9["ten_the_loai"] ?></h2>
+					</div>
+				</div>
+				<?php foreach ($this->views->sach9 as $key9 => $value9) {
+                           $images_url = base_path.'Public/image/'.$value9['hinh_anh'];
+                           $giamgia = ceil((100 - (($value9["gia_ban"]/$value9["gia_goc"])*100)));
+                ?>
+			<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="product product-single">
+						<div class="product-thumb">
+							<div class="product-label">
+								<span>New</span>
+								<span class="sale">-<?= $giamgia ?>%</span>
+							</div>
+							<a href="?controller=trangphu-sanpham&action=chitietsanpham&id=<?= $value9['id'] ?>"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button></a>
+							<img src="<?= $images_url ?>" alt="">
+						</div>
+						<div class="product-body">
+							<h3 class="product-price"><?= number_format($value9["gia_ban"]) ?> <del class="product-old-price"><?= number_format($value9["gia_goc"]) ?></del></h3>
+							<div class="product-rating">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star-o empty"></i>
+								<i class="fa fa-star-o empty"></i>
+							</div>
+							<h2 class="product-name"><a href="?controller=trangphu-sanpham&action=chitietsanpham&id=<?= $value9['id'] ?>"><?= $value9["ten_sach"] ?></a></h2>
+							<div class="product-btns">
+								<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+								<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+							<a href="?action=add_cart&id=<?=$value9['id']?>"><button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button></a>
+							</div>
+						</div>
+					</div>
+				</div>
+		   <?php } ?>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>

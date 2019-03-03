@@ -1,0 +1,131 @@
+<div class="box">
+            <?php
+     if(isset( $_SESSION["themsp"])){
+       echo "<div style='color:green;font-size:20px;'>" .$_SESSION["themsp"]. "</div>"; 
+       unset($_SESSION["themsp"]);
+     }
+
+     if(isset( $_SESSION["sanpham"])){
+       echo "<div style='color:green;font-size:20px;'>" .$_SESSION["sanpham"]. "</div>"; 
+       unset($_SESSION["sanpham"]);
+     }
+  ?>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <a href="?controller=danhsach&action=themsanpham" style="font-size: 20px;">+Thêm Sản Phẩm</a>
+               <div>
+                <form method="post" action="">
+                 Tên sách: <input type="text" name="tensach" placeholder="Tìm với tên sách" size="30px;">
+                 Tác giả: <input type="text" name="tacgia" placeholder="Tìm với tác giả"  size="30px;">
+                 <button name="timkiem" type="submit" class="btn btn-danger btn-sm">Tìm kiếm</button>
+               </form>
+               </div>
+              <table id="example1" class="table table-bordered table-striped">
+              
+                <tr>
+                  <th>ID</th>
+                  <th>Tên sách</th>
+                  <th>Năm xuất bản</th>
+                  <th>Tác giả</th>
+                  <th>Nhà xuất bản</th>
+                  <th>Hình ảnh</th>
+                  <th>mã nhân viên</th>
+                  <th>mã tài khoản</th>
+                  <th>Xóa</th>
+                  <th>Chỉnh sửa</th>
+                </tr>
+              
+            <?php
+            if(isset($_POST["timkiem"])){
+               foreach ($this->views_sp as $key => $value1) {
+                  $images_url1 = base_path.'Public/image/'.$value1['hinh_anh'];
+             ?>
+                  <tr>
+                 <td style="line-height: 40px;"><?=$value1["id"]?></td>
+                 <td style="line-height: 40px;"><?= $value1["ten_sach"] ?></td>
+                 <td style="line-height: 40px;"><?= $value1["nam_xuat_ban"] ?></td>
+                 <td style="line-height: 40px;"><?= $value1["tac_gia"] ?></td>
+                 <td style="line-height: 40px;"><?= $value1["nha_xuat_ban"] ?></td>
+                 <td style="line-height: 40px;"><img src="<?= $images_url1 ?>" style="width: 35px;height: 40px;"></td>
+                 <td style="line-height: 40px;"><?= $value1["id_nv"] ?></td>
+                 <td style="line-height: 40px;"><?= $value1["id_tai_khoan"] ?></td>
+                 <td style="line-height: 40px;"><a href="?controller=danhsach&action=deletesanpham&id=<?=$value1["id"]?>" onclick="return xoa()">Xóa</a></td>
+                 <td style="line-height: 40px;"><a href="?controller=danhsach&action=updatesanpham&id=<?=$value1["id"]?>">Chỉnh Sửa</a></td>
+                </tr>
+             <?php    
+              }}else{
+           
+            foreach ($this->views->list_sach as $value) { 
+            
+            $images_url = base_path.'Public/image/'.$value['hinh_anh'];
+              ?>
+                <tr>
+                 <td style="line-height: 40px;"><?=$value["id"]?></td>
+                 <td style="line-height: 40px;"><?= $value["ten_sach"] ?></td>
+                 <td style="line-height: 40px;"><?= $value["nam_xuat_ban"] ?></td>
+                 <td style="line-height: 40px;"><?= $value["tac_gia"] ?></td>
+                 <td style="line-height: 40px;"><?= $value["nha_xuat_ban"] ?></td>
+                 <td style="line-height: 40px;"><img src="<?= $images_url ?>" style="width: 35px;height: 40px;"></td>
+                 <td style="line-height: 40px;"><?= $value["id_nv"] ?></td>
+                 <td style="line-height: 40px;"><?= $value["id_tai_khoan"] ?></td>
+                 <td style="line-height: 40px;"><a href="?controller=danhsach&action=deletesanpham&id=<?=$value["id"]?>" onclick="return xoa()">Xóa</a></td>
+                 <td style="line-height: 40px;"><a href="?controller=danhsach&action=updatesanpham&id=<?=$value["id"]?>">Chỉnh Sửa</a></td>
+                </tr>
+              <?php }} ?>
+                
+                <tr>
+                  <th>ID</th>
+                  <th>Tên sách</th>
+                  <th>Năm xuất bản</th>
+                  <th>Tác giả</th>
+                  <th>Nhà xuất bản</th>
+                  <th>Hình ảnh</th>
+                  <th>mã nhân viên</th>
+                  <th>mã tài khoản</th>
+                  <th>Xóa</th>
+                  <th>Chỉnh sửa</th>
+                </tr>
+             
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
+           <div class="pagination" style="float: right;margin-right: -150px;width: 300px;">
+           <?php 
+            // PHẦN HIỂN THỊ PHÂN TRANG
+            // BƯỚC 7: HIỂN THỊ PHÂN TRANG
+ 
+            // nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
+            if ($this->views->current_pages > 1 && $this->views->total_pages > 1){
+                echo '<a href="?controller=danhsach&action=listsanpham&page='.($this->views->current_pages-1).'" style="font-size:16px;">Prev | </a>';
+            }
+ 
+            // Lặp khoảng giữa
+            for ($i = 1; $i <= $this->views->total_pages; $i++){
+                // Nếu là trang hiện tại thì hiển thị thẻ span
+                // ngược lại hiển thị thẻ a
+                if ($i == $this->views->current_pages){
+                    echo '<span style="font-size:16px;">'.$i.' |</span>  ';
+                }
+                else{
+                    echo '<a href="?controller=danhsach&action=listsanpham&page='.$i.'" style="font-size:16px;">'.$i.' |</a> ';
+                }
+            }
+ 
+            // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
+            if ($this->views->current_pages < $this->views->total_pages && $this->views->total_pages > 1){
+                echo '<a href="?controller=danhsach&action=listsanpham&page='.($this->views->current_pages+1).'" style="font-size:16px;">Next</a> ';
+            }
+           ?>
+        </div>
+
+
+
+
+
+
+
+
+
+

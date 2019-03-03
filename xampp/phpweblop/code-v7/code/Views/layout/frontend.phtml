@@ -1,0 +1,91 @@
+<?php
+require_once model_path.'/SanPhamModel.php';
+$list_danh_muc = listDanhMucHome();
+if(!is_array($list_danh_muc)){
+  die("Loi load danh muc san pham: ". $list_danh_muc );
+}
+
+$tong_sp = 0;
+
+if(isset($_SESSION['cart']))
+{
+  $tong_sp = count($_SESSION['cart']);
+}
+ 
+?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Shop bán hàng</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="<?php echo base_path;?>/public/shop/style.css?v=1" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="wrapper">
+      <div id="inner">
+          <div id="header">
+              <h1>Tên shop bán hàng</h1>
+              <div id="nav">
+                  <a href="#">Tài khoản của bạn</a> | <a href="?action=show-cart">Xem giỏ hàng (<?php echo $tong_sp; ?>)
+                    
+                  </a> | <a href="#">Trợ giúp</a>
+              </div><!-- end nav -->
+              <a href="#"><img src="<?php echo base_path;?>/public/shop/images/banner.jpg" width="744" height="193" alt="Harry Potter cd" /></a>
+          </div><!-- end header -->
+          <dl id="browse">
+              <dt>Tất cả sản phẩm</dt>
+              <?php 
+                  foreach($list_danh_muc as $k=> $row){
+                      $css = '';
+
+                      if($k == 0)
+                        $css = ' class="first" ';
+                      elseif($row == end($list_danh_muc))
+                        $css = ' class="last" ';
+
+                      $link = '?action=danh-sach-san-pham&id_dm='.$row['id'];
+
+                      echo "<dd $css ><a href='$link'>{$row['ten_danh_muc']}</a></dd> ";
+                  }
+
+              ?>
+ 
+                
+
+              <dt>Tìm kiếm sản phẩm ưa thích</dt>
+              <dd class="searchform">
+                <form action="?" method="get">
+                    <div><select name="cat">
+                        <option value="-" selected="selected">Thể loại</option>
+                        <option value="-">------------</option>
+                    </select></div>
+                    <div><input name="q" type="text"  class="text" /></div>
+                    <div class="softright"><input type="image" src="<?php echo base_path;?>/public/shop/images/btn_search.gif" /></div>
+                </form>
+              </dd>
+          </dl>
+
+          <div id="body">
+              <div class="inner">
+
+                  <?php ShowContent($dataView);?>
+                  
+                  <div class="clear"></div>
+
+              </div><!-- end .inner -->
+          </div><!-- end body -->
+
+          <div class="clear"></div>
+          <div id="footer">
+              Web được thiết kế bởi <a href="#">ABC</a>
+
+              &nbsp;
+              <div id="footnav">
+                  <a href="#">Chứng nhận</a> | <a href="#">Chính sách bảo mật</a>
+              </div><!-- end footnav -->
+
+          </div><!-- end footer -->
+      </div><!-- end inner -->
+  </div><!-- end wrapper -->
+</body>
+</html>

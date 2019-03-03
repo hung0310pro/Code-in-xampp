@@ -1,0 +1,191 @@
+	<div class="section">
+
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<form method="post" action="">
+					<div class="col-md-6">
+						<div class="billing-details">
+							<div class="section-title">
+								<h3 class="title">Thông tin khách hàng</h3>
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="hoten" placeholder="Họ và tên">
+							</div>
+							<div class="form-group">
+								<input class="input" type="email" name="email" placeholder="Email">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="diachi" placeholder="Địa chỉ">
+							</div>
+							<div class="form-group">
+								<input class="input" type="tel" name="dienthoai" placeholder="Số điện thoại">
+							</div>
+					
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="shiping-methods">
+							<div class="section-title">
+								<h4 class="title">Shiping</h4>
+							</div>
+							<div class="input-checkbox">
+								<input type="radio" name="shipping" id="shipping-1" checked>
+								<label for="shipping-1">Free Shiping</label>
+								<div class="caption">
+									<p>E Shop có hơn 2.200 CB-CNV, trình độ chuyên môn giỏi, nhiệt tình, năng động, chuyên nghiệp. Lực lượng quản lý FAHASA có thâm niên công tác, giỏi nghiệp vụ nhiều kinh nghiệm, có khả năng quản lý tốt và điều hành đơn vị hoạt động hiệu quả.
+										<p>
+								</div>
+							</div>
+						</div>
+
+						<div class="payments-methods">
+							<div class="section-title">
+								<h4 class="title">Hình thức thanh toán</h4>
+							</div>
+							<div class="input-checkbox">
+								<input type="radio" name="payments" id="payments-1" checked value="Chuyển khoản trực tiếp">
+								<label for="payments-1">Chuyển khoản trực tiếp</label>
+								<div class="caption">
+									<p>Thanh toán bằng chuyển khoản trược tiếp là hình thức thanh toán nhanh và hiệu quả, và chính xác giúp mọi giao dịch trở lên dễ dàng và tiện lợi hơn.
+										<p>
+								</div>
+							</div>
+							<div class="input-checkbox">
+								<input type="radio" name="payments" id="payments-3" value="Thanh toán bằng tiền mặt">
+								<label for="payments-3">Thanh toán bằng tiền mặt</label>
+								<div class="caption">
+									<p>Thanh toán bằng tiền mặt là hình thức thanh toán nhanh và hiệu quả, là hình thức thanh toán khi giao hàng tận tay khách hàng.<p>
+								</div>
+							</div>
+						</div>
+					</div>
+			
+
+					<div class="col-md-12">
+						<div class="order-summary clearfix">
+							<div class="section-title">
+								<h3 class="title">Sản phẩm chọn mua</h3>
+							</div>
+							<?php
+
+							    if(isset($this->views->error1)) {
+							        foreach ($this->views->error1 as $msg) {
+							            echo "<div style='color:blue;font-size:20px;'>" . $msg . "</div>"; 
+							        }
+							    }
+
+							    if(isset( $this->views->success)) {
+							        foreach ( $this->views->success as $msg) {
+							            echo "<div style='color:green;font-size:20px;'>" . $msg . "</div>"; 
+							        }					        
+                                     
+							    }
+
+							?>
+					        <div><span style='color:#ff33cc;font-size:20px;'><a href='?controller=user&action=dangnhapgiohang'>+ Xem lại </a>sản phẩm đã mua</span></div>
+							<table class="shopping-cart-table table">
+								<thead>
+									<tr>
+										<th>Hình ảnh</th>
+										<th>Tên sản phẩm</th>
+										<th class="text-center">Giá</th>
+										<th class="text-center">Số lượng</th>
+										<th class="text-center">Thành tiền</th>
+										<th class="text-right"></th>
+									</tr>
+								</thead>
+								<tbody>
+					<?php
+					$flag = 0;
+					      if(!isset($_SESSION["giohang"])){
+					      	$flag = false;
+					      }
+					      else{
+					      	foreach ($_SESSION["giohang"] as $id => $soluong) {
+					      		if(isset($id)){
+					      			$flag = true;
+					      		}
+					      		else{
+					      			$flag = false;
+					      		}
+					      	}
+					      }
+					      if($flag == false){
+					      	echo "<span style='color:red;font-size:25px;'>Giỏ hàng của bạn trống</span>";
+					      	echo "<br>";
+					      	echo "<a href='?controller=index' style='color:red;font-size:18px;'>Trở lại trang chủ</a>";
+					      }
+					      if($flag == true){
+					      	$tongtien = 0;
+					      foreach($_SESSION["giohang"] as $id_sach => $soluong){
+	      					$thanhtien = 0;
+	      					$ten_sach ="";
+	      					$hinh_anh = "";
+	      					$gia_ban = "";
+                          foreach ($this->views->listsp_giohang as $row) {
+                            	   if($id_sach == $row["id"]){
+                            		$ten_sach = $row["ten_sach"];
+                            		$gia_ban = $row["gia_ban"];
+                            		$hinh_anh = $row["hinh_anh"];
+                            		 $images_url1 = base_path.'Public/image/'.$hinh_anh;
+                            		 $thanhtien = $gia_ban*$soluong;
+                            		 break;
+                            		}
+                            	}
+                       	
+                            
+					?>
+									<tr>
+										<td class="thumb"><img src="<?= $images_url1 ?>" alt=""></td>
+										<td class="details"><strong><?= $ten_sach ?></strong></td>
+										<td class="price text-center"><strong><?= $gia_ban ?></strong></td>
+
+									<?php echo "<td class='qty text-center'><input class='input' type='number' value='$soluong' name='sl_$id_sach'></td>"; ?>
+
+										<td class="total text-center"><strong class="primary-color"><?=$thanhtien?>đ</strong></td>
+										<td><a href="?controller=trangphu-sanpham&action=deletesanpham&id=<?=$row['id']?>"><i class="fa fa-close"></i></a></td>
+									</tr>
+                      <?php 
+                     $tongtien += $thanhtien;
+                  } ?>
+								</tbody>
+								<tfoot>
+									<tr>
+										<th class="empty" colspan="3"></th>
+										<th>Tổng phụ</th>
+										<th colspan="2" class="sub-total"><?=$tongtien?>đ</th>
+									</tr>
+									<tr>
+										<th class="empty" colspan="3"></th>
+										<th>SHIPING</th>
+										<td colspan="2">Free Shipping</td>
+									</tr>
+									<tr>
+										<th class="empty" colspan="3"></th>
+										<th>Tổng tiền</th>
+										<th colspan="2" class="total"><?=$tongtien?>đ</th>
+									</tr>
+									<tr>
+										<th class="empty" colspan="3"></th>
+										<th style="width: 200px;text-align: center;border:none;color: white;font-size: 20px;"><input type="submit" name="cngiohang" value="Cập nhật giỏ hàng" style="background:#993333; width: 200px;height: 50px;"></th>
+										<th style="width: 200px;text-align: center;border:none;color: white;font-size: 20px;"><input type="submit" name="thanhtoan" value="Thanh toán" style="background:#993333; width: 200px;height: 50px;"></th>
+									</tr>
+								<?php } ?>
+								</tfoot>
+							</table>
+					
+						</div>
+
+					</div>
+
+				</form>
+				
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->

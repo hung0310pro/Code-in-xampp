@@ -1,0 +1,264 @@
+<div class="section">
+
+
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!--  Product Details -->
+				<div class="product product-details clearfix">
+
+					<?php
+					if(isset($_GET["id"])){ 
+                            $images_url = base_path.'Public/image/'.$this->views->get_row_sach['hinh_anh'];
+                           $giamgia = ceil((100 - (($this->views->get_row_sach["gia_ban"]/$this->views->get_row_sach["gia_goc"])*100)));
+						?>
+					<div class="col-md-6">
+						<div id="product-main-view">
+							<div class="product-view">
+								<img src="<?= $images_url ?>" alt="" style="width: 70%;">
+							</div>
+							
+						</div>
+						
+					</div>
+					<div class="col-md-6">
+						<div class="product-body">
+							<div class="product-label">
+								<span>New</span>
+								<span class="sale">-<?= $giamgia ?>%</span>
+							</div>
+							<h2 class="product-name"><?= $this->views->get_row_sach["ten_sach"] ?></h2>
+							<h3 class="product-price"><?= $this->views->get_row_sach["gia_ban"] ?> <del class="product-old-price"><?= $this->views->get_row_sach["gia_goc"] ?></del></h3>
+							<div>
+								<div class="product-rating">
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-o empty"></i>
+								</div>
+								<a href="#">3 Review(s) / Add Review</a>
+							</div>
+							<p><strong>Cửu Hàng:</strong> E-SHOP</p>
+							<p><?= $this->views->get_row_sach["gioi_thieu"] ?></p>
+							
+
+						<div class="product-btns" style="float: left;background-color: #ff3300;width: 120px;height: 50px;">
+								<a href="?action=add_cart&id=<?=$_GET['id']?>" style="color: white;font-size: 22px;font-weight: bold;margin-left: 10px;line-height: 50px;">Mua Sách</a>
+								
+						</div>	
+						<div class="product-btns" style="float: left;background-color: #ff3300;width: 180px;height: 50px;margin-left: 15px;">
+							<a href="?controller=index" style="color: white;font-size: 22px;font-weight: bold;margin-left: 13px;line-height: 50px;">Mua thêm sách</a>
+						</div>
+						<div class="product-btns" style="float: right;background-color: #ff3300;width: 140px;height: 50px;margin-right: 85px;">
+							<a href="?controller=trangphu-sanpham&action=thanhtoan" style="color: white;font-size: 22px;font-weight: bold;margin-left: 13px;line-height: 50px;">Thanh toán</a>
+						</div>
+						</div>
+					</div>
+			
+					<div class="col-md-12">
+						<div class="product-tab">
+							<ul class="tab-nav">
+								<li class="active"><a data-toggle="tab" href="#tab1">Thông tin sản phẩm</a></li>
+								<li><a data-toggle="tab" href="#tab2">Bình luận</a></li>
+							</ul>
+							<?php
+							           if(isset($_SESSION["cmt"])){
+							           	echo "<div style='color:#ff3333;font-size:20px;'>" .$_SESSION["cmt"]. "</div>";
+							           	 unset($_SESSION["cmt"]); 
+							            }
+
+							         if(isset($this->views->error)) {
+							        foreach ($this->views->error as $msg) {
+							            echo "<div style='color:blue;font-size:20px;'>" . $msg . "</div>"; 
+							        }							    }
+							           
+							     ?>
+							<div class="tab-content container">
+								<div id="tab1" class="tab-pane fade in active">
+
+            <div class="table-responsive">
+            <form>    
+                <table class="table table-bordered">
+
+                        <tr class="success">
+                        	<th>Năm xuất bản</th>
+                            <td><?= $this->views->get_row_sach["nam_xuat_ban"] ?></td>
+                        </tr>
+                        <tr class="active">
+                        	 <th>Trọng lượng</th>
+                            <td><?= $this->views->get_row_sach["trong_luong"] ?></td>
+                        </tr>
+                        <tr class="danger">
+                        	 <th>Kích thước</th>
+                            <td><?= $this->views->get_row_sach["kich_thuoc"] ?></td>
+                        </tr>
+                        <tr class="warning">
+                        	<th>Số trang</th>
+                            <td><?= $this->views->get_row_sach["so_trang"] ?></td>
+                        </tr>
+                        <tr class="success">
+                        	<th>Hình thức</th>
+                            <td><?= $this->views->get_row_sach["hinh_thuc"] ?></td>
+                        </tr>
+                        <tr class="active">
+                        	<th>Ngôn ngữ</th>
+                            <td><?= $this->views->get_row_sach["ngon_ngu"] ?></td>
+                        </tr>
+                        <tr class="danger">
+                        	 <th>Tác giả</th>
+                            <td><?= $this->views->get_row_sach["tac_gia"] ?></td>
+                        </tr>
+                        <tr class="warning">
+                        	 <th>Nhà cung cấp</th>
+                            <td><?= $this->views->get_row_sach["nha_cung_cap"] ?></td>
+                        </tr>
+                        <tr class="success">
+                        	 <th>Nhà xuất bản</th>
+                            <td><?= $this->views->get_row_sach["nha_xuat_ban"] ?></td>
+                        </tr>
+                    
+                </table>
+            </form>
+             </div>   
+      
+
+								</div>
+								<div id="tab2" class="tab-pane fade in ">
+
+									<div class="row">
+									 	
+                                      	
+										<div class="col-md-6" >
+										
+											<div class="product-reviews">
+                                             <?php
+										 if(count($this->views->binhluan) > 0){
+										 	foreach ($this->views->binhluan as $key => $value) {
+										 
+                						?>
+												<div class="single-review">
+													<div class="review-heading">
+														<div><a href="#"><i class="fa fa-user-o"></i> <?=$value["username"]?></a></div>
+														<div><a href="#"><i class="fa fa-clock-o"></i> <?= $value["thoi_gian_bl"]?></a></div>
+														<div class="review-rating pull-right">
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star"></i>
+															<i class="fa fa-star-o empty"></i>
+														</div>
+													</div>
+													<div class="review-body">
+														<p><b><?= $value["tieu_de"] ?></b></p>
+														<p><?= $value["comment"] ?></p>
+													</div>
+												</div>
+                                            <?php }}
+                                            else{?>
+                                             <p style="position: relative;left: 16px;">Chưa có bình luận nào cho sản phẩm này</p>
+                                            <?php } ?>
+												<!-- ul class="reviews-pages" style="position: relative;left: 16px;">
+													<li class="active">1</li>
+													<li><a href="#">2</a></li>
+													<li><a href="#">3</a></li>
+													<li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+												</ul> -->
+											</div>
+										</div>
+										<?php
+                                          if(isset($_SESSION["username"])){
+										?>
+										<div class="col-md-6" >
+											<h4 class="text-uppercase">Bình luận</h4>
+											<p>Tên tài khoản của bạn</p>
+											<form class="review-form" method="post" action="">
+												<div class="form-group">
+													<input class="input" type="text" name="username" value="<?=$_SESSION["username"]?>" />
+												</div>
+											<p>Tiêu đề</p>	
+												<div class="form-group">
+													<input class="input" type="text" placeholder="Tiêu đề" name="tieude" />
+												</div>
+											<p>Bình luận</p>	
+												<div class="form-group">
+													<textarea class="input" placeholder="Bình luận của bạn" name="binhluan"></textarea>
+												</div>
+												<button class="primary-btn" name="submit">Submit</button>
+											</form>
+											<?php }else{  ?>
+                                             <p style="font-size: 16px;">+ Bạn phải <a href="?controller=user&action=login" style="color: red;">Đăng nhập</a> thì mới có thể viết bình luận </p>
+                                          <?php } ?>
+										</div>
+									
+									</div>
+                                   
+
+									</div>
+								</div>
+						
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- /Product Details -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- section title -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h2 class="title">Sản phẩm liên quan</h2>
+					</div>
+				</div>
+                <?php foreach ($this->views->get_sachlq as $key => $value) {
+                $images_url = base_path.'Public/image/'.$value['hinh_anh'];
+                $giamgia = ceil((100 - (($value["gia_ban"]/$value["gia_goc"])*100)));
+                 ?>
+
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="product product-single">
+						<div class="product-thumb">
+							<div class="product-label">
+								<span class="sale">-<?= $giamgia ?>%</span>
+							</div>
+							<a href="?controller=trangphu-sanpham&action=chitietsanpham&id=<?= $value['id'] ?>"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button></a>
+							<img src="<?= $images_url ?>" alt="">
+						</div>
+						<div class="product-body">
+							<h3 class="product-price"><?= $value["gia_ban"] ?><del class="product-old-price"><?= $value["gia_goc"] ?></del></h3>
+							<div class="product-rating">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star-o empty"></i>
+							</div>
+							<h2 class="product-name"><a href="?controller=trangphu-sanpham&action=chitietsanpham&id=<?= $value['id'] ?>"><?= $value["ten_sach"] ?></a></h2>
+							<div class="product-btns">
+								<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+								<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+								<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			   <?php }} ?>
+
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>

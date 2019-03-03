@@ -1,0 +1,21 @@
+RewriteEngine on
+RewriteRule ^danh-sach-san-pham.html$ sanpham.php
+
+#xem chi tiet san pham 
+RewriteRule ^chi-tiet-san-pham-([0-9]+).html$ detail.php?id=$1
+
+RewriteRule ^list-product-([0-9]+)/$ detail.php?id=$1
+
+
+#tạo link xem chi tiết sản phẩm có kèm theo tên nhóm sản phẩm...
+#vd: samsung/galaxy-s5-123.html 
+
+RewriteRule ^samsung/galaxy-s5-([0-9]+).html$ detail.php?id=$1
+
+# cấu trúc chung của link chi tiết sản phẩm có kèm nhóm.
+# ten-nhom-san-pham/ten-san-pham-2222.html
+
+RewriteRule ^([a-z0-9\-_]+)/([a-z0-9\-_]+)-([0-9]+).html$ detail.php?id=$3
+
+#&ten_nhom=$1&tensp=$2
+

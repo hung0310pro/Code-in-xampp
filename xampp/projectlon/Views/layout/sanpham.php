@@ -1,0 +1,371 @@
+<?php
+require_once model_path.'/SanphamModel.php';
+$objtheloai = new SanphamModel();
+$list_theloai = $objtheloai->loadlist("tb_theloai");
+$tong_sp_giohang = 0;
+if(isset($_SESSION["giohang"])){
+  $tong_sp_giohang = count($_SESSION["giohang"]);
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>E-SHOP</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="Public/css/bootstrap.min.css" />
+
+	<!-- Slick -->
+	<link type="text/css" rel="stylesheet" href="Public/css/slick.css" />
+	<link type="text/css" rel="stylesheet" href="Public/css/slick-theme.css" />
+
+	<!-- nouislider -->
+	<link type="text/css" rel="stylesheet" href="Public/css/nouislider.min.css" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="Public/css/font-awesome.min.css">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="Public/css/style.css" />
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+
+<body>
+	<!-- HEADER -->
+	<header>
+		<!-- top Header -->
+		<div id="top-header">
+			<div class="container">
+				<div class="pull-left">
+					<span>Welcome to E-Shop!</span>
+				</div>
+				
+			</div>
+		</div>
+		<!-- /top Header -->
+
+		<!-- header -->
+		<div id="header">
+			<div class="container">
+				<div class="pull-left">
+					<!-- Logo -->
+					<div class="header-logo">
+						<a class="logo" href="?controller=index">
+							<img src="Public/img/logo.png" alt="">
+						</a>
+					</div>
+					<!-- /Logo -->
+
+					<!-- Search -->
+					<div class="header-search">
+					 	 <form method="post" action="?controller=trangphu-sanpham&action=search"> 
+		<input class="input search-input" type="text" placeholder="Tìm kiếm sản phẩm" name="search">
+       <button class="search-btn"><i class="fa fa-search"></i></button>
+					 	  </form> 
+					</div>
+					<!-- /Search -->
+				</div>
+				<div class="pull-right">
+					<ul class="header-btns">
+						<!-- Account -->
+						<li class="header-account dropdown default-dropdown">
+							<div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+								<div class="header-btns-icon">
+									<i class="fa fa-user-o"></i>
+								</div>
+								<strong class="text-uppercase">Tài Khoản <i class="fa fa-caret-down"></i></strong>
+							</div>
+							<a href="?controller=user&action=login" class="text-uppercase">Login</a>
+							<ul class="custom-menu">
+								<?php if(isset($_SESSION["username"])){ ?>
+								<li><a href="#"><i class="fa fa-user-o"></i><?= $_SESSION["username"]?></a></li>
+								<li><a href="?controller=user&action=register"><i class="fa fa-unlock-alt"></i> Tạo tài khoản</a></li>
+								<li><a href="?controller=index&action=logout"><i class="fa fa-user-plus"></i>Thoát</a></li>
+							<?php }
+							else { ?>
+                                 <li><a href="#"><i class="fa fa-user-o"></i> Tài khoản của tôi</a></li>
+								<li><a href="?controller=user&action=login"><i class="fa fa-unlock-alt"></i> Đăng nhập</a></li>
+								<li><a href="?controller=user&action=register"><i class="fa fa-user-plus"></i> Tạo tài khoản</a></li>
+								<?php } ?>
+							</ul>
+						</li>
+						<!-- /Account -->
+
+						<!-- Cart -->
+						<li class="header-cart dropdown default-dropdown">
+							<a href="?controller=trangphu-sanpham&action=thanhtoan">
+								<div class="header-btns-icon">
+									<i class="fa fa-shopping-cart"></i>
+									<span class="qty"><?= $tong_sp_giohang ?></span>
+								</div>
+								<strong class="text-uppercase" style="position: relative;top: 12px;">Giỏ hàng</strong>
+							</a>
+						</li>
+						<!-- /Cart -->
+
+						<!-- Mobile nav toggle-->
+						<li class="nav-toggle">
+							<button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
+						</li>
+						<!-- / Mobile nav toggle -->
+					</ul>
+				</div>
+			</div>
+			<!-- header -->
+		</div>
+		<!-- container -->
+	</header>
+	<!-- /HEADER -->
+
+	<!-- NAVIGATION -->
+	<div id="navigation">
+		<!-- container -->
+		<div class="container">
+			<div id="responsive-nav">
+				<!-- category nav -->
+				<div class="category-nav">
+					<span class="category-header">DANH MỤC SÁCH <i class="fa fa-list"></i></span>
+					<ul class="category-list">
+						<?php foreach($list_theloai as $key => $theloai){
+						/* $_SESSION["theloai"] = array(); 
+                         $_SESSION["theloai"] = $theloai["id"];*/
+							?>
+						<li><a href="?controller=trangphu-sanpham&action=sanphamdanhmuc&id=<?=$theloai['id']?>"><?= $theloai["ten_the_loai"]; ?> </a></li>
+					<?php } ?>
+					</ul>
+				</div>
+				<!-- /category nav -->
+
+				<!-- menu nav -->
+				<div class="menu-nav">
+					<span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+					<ul class="menu-list">
+
+						<li><a href="">Trang chủ</a></li>
+						<li><a href="?controller=trangphu-sanpham&action=thanhtoan">Thanh toán</a></li>
+						<?php if (isset($_SESSION["level"])) {
+                           if($_SESSION["level"] == 1){
+						 ?>
+							<li><a href="?controller=danhsach&action=danhmucsach">Danh sách</a></li>
+						<?php }
+                          else if($_SESSION["level"] == 2){ ?>
+                          
+                            <li><a href="?controller=danhsach&action=listsanpham">Danh sách</a></li>
+
+				<?php	}}?>
+				<?php if(isset($_SESSION["email"]) && isset($_SESSION["dienthoai"])){?>
+                         <li><a href="?controller=trangphu-sanpham&action=xemgiohang">Đơn hàng của bạn</a></li>
+				<?php } ?>			
+					</ul>
+				</div>
+				<!-- menu nav -->
+			</div>
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /NAVIGATION -->
+
+	<!-- HOME -->
+	<div id="home">
+		<!-- container -->
+		<div class="container">
+			<!-- home wrap -->
+			<div class="home-wrap">
+				<!-- home slick -->
+				<div id="home-slick">
+					<!-- banner -->
+					<div class="banner banner-1">
+						<img src="Public/image/anh1.jpg" alt="">
+					</div>
+					<!-- /banner -->
+
+					<div class="banner banner-1">
+						<img src="Public/image/anh2.jpg" alt="">
+					</div>
+					<!-- /banner -->
+					<!-- banner -->
+					<div class="banner banner-1">
+						<img src="Public/image/anh3.jpg" alt="">
+					</div>
+                    <div class="banner banner-1">
+						<img src="Public/image/anh4.jpg" alt="">
+					</div>
+					<div class="banner banner-1">
+						<img src="Public/image/anh5.jpg" alt="">
+					</div>
+					<!-- /banner -->
+				</div>
+				<!-- /home slick -->
+			</div>
+			<!-- /home wrap -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /HOME -->
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- banner -->
+				<div class="col-md-4 col-sm-6">
+					<a class="banner banner-1" href="#">
+						<img src="Public/image/img1.jpg" alt="">
+						<div class="banner-caption text-center">
+							<h2 class="white-color">NEW COLLECTION</h2>
+						</div>
+					</a>
+				</div>
+				<!-- /banner -->
+
+				<!-- banner -->
+				<div class="col-md-4 col-sm-6">
+					<a class="banner banner-1" href="#">
+						<img src="Public/image/img2.jpg" alt="">
+					</a>
+				</div>
+				<!-- /banner -->
+
+				<!-- banner -->
+				<div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-3">
+					<a class="banner banner-1" href="#">
+						<img src="Public/image/img3.jpg" alt="">
+					</a>
+				</div>
+				<!-- /banner -->
+
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->   
+<div id="than_trang"> <!-- thantrang -->
+  <?php $this->showcontent(); ?>
+	<div><!--  thân bài -->
+	<!-- /section -->
+
+	<!-- FOOTER -->
+	<footer id="footer" class="section section-grey">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- footer widget -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<!-- footer logo -->
+						<div class="footer-logo">
+							<a class="logo" href="#">
+		            <img src="Public/img/logo.png" alt="">
+		          </a>
+						</div>
+						<!-- /footer logo -->
+
+						<p>E Shop có hơn 2.200 CB-CNV, trình độ chuyên môn giỏi, nhiệt tình, năng động, chuyên nghiệp. Lực lượng quản lý FAHASA có thâm niên công tác, giỏi nghiệp vụ nhiều kinh nghiệm, có khả năng quản lý tốt và điều hành đơn vị hoạt động hiệu quả.<p>
+
+						<!-- footer social -->
+						<ul class="footer-social">
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+							<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+						</ul>
+						<!-- /footer social -->
+					</div>
+				</div>
+				<!-- /footer widget -->
+
+				<!-- footer widget -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<h3 class="footer-header">Tài khoản của tôi</h3>
+						<ul class="list-links">
+							<li><a href="#">Đăng nhập/Tạo mới tài khoản</a></li>
+							<li><a href="#">Thay đổi địa chỉ khách hàng</a></li>
+							<li><a href="#">Chi tiết tài khoản</a></li>
+							<li><a href="#">Lịch sử mua hàng</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- /footer widget -->
+
+				<div class="clearfix visible-sm visible-xs"></div>
+
+				<!-- footer widget -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<h3 class="footer-header">Dịch vụ khách Hàng</h3>
+						<ul class="list-links">
+							<li><a href="#">Phương thức thanh toán</a></li>
+							<li><a href="#">Phương thức vận chuyển</a></li>
+							<li><a href="#">Chính khách-khách sỉ</a></li>
+							<li><a href="#">Chính sách-đổi-trả-hoàn tiền</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- /footer widget -->
+
+				<!-- footer subscribe -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<h3 class="footer-header">Liên Hệ</h3>
+						<p>Lầu 7, 387-389 Hai Bà Trưng Quận 3 TP HCM Công Ty Cổ Phần Phát Hành Sách TP HCM - E-shop 60 - 62 Lê Lợi, Quận 1, TP. HCM, Việt Nam.</p>
+						<form>
+							<div class="form-group">
+								<input class="input" placeholder="Enter Email Address">
+							</div>
+							<button class="primary-btn">Join Newslatter</button>
+						</form>
+					</div>
+				</div>
+				<!-- /footer subscribe -->
+			</div>
+			<!-- /row -->
+			<hr>
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center">
+					<!-- footer copyright -->
+					<div class="footer-copyright">
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						Giấy chứng nhận Đăng ký Kinh doanh số **0304132047** do Sở Kế hoạch và Đầu tư Thành phố Hồ Chí Minh cấp ngày 28/11/2012.
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</div>
+					<!-- /footer copyright -->
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</footer>
+	<!-- /FOOTER -->
+
+	<!-- jQuery Plugins -->
+	<script src="Public/js/jquery.min.js"></script>
+	<script src="Public/js/bootstrap.min.js"></script>
+	<script src="Public/js/slick.min.js"></script>
+	<script src="Public/js/nouislider.min.js"></script>
+	<script src="Public/js/jquery.zoom.min.js"></script>
+	<script src="Public/js/main.js"></script>
+
+</body>
+
+</html>

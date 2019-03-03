@@ -1,0 +1,236 @@
+<?php
+require ("header_dn.php");
+$tongtienvsvat = 0;
+if (isset($_POST["soluong"])) {
+	$soluong = $_POST["soluong"];
+} else {
+	$soluong = 1;
+}
+$username    = $telephone    = $address    = $addressgh    = $email    = $thanhtoan    = null;
+$loi         = array();
+$loi["name"] = $loi["phone"] = $loi["diachi"] = $loi["emails"] = $loi["tratien"] = $loi["diachigh"] = null;
+if (isset($_POST["ok"])) {
+	if (empty($_POST["username"])) {
+		$loi["name"] = " Bạn chưa nhập tên";
+	} else {
+		$username = $_POST["username"];
+	}
+	if (empty($_POST["telephone"])) {
+		$loi["phone"] = " Bạn chưa nhập số điện thoại";
+	} else {
+		$telephone = $_POST["telephone"];
+	}
+	if (isset($telephone)) {
+		if (!preg_match("/^(84|0)(1\d{9}|9\d{8})$/", $telephone)) {
+			$loi["phone"] = " Bạn chưa nhập đúng định dạng số điện thoại";
+		}
+	}
+	if (empty($_POST["address"])) {
+		$loi["diachi"] = " Bạn chưa nhập địa chỉ";
+	} else {
+		$address = $_POST["address"];
+	}
+	if (empty($_POST["addressgh"])) {
+		$loi["diachigh"] = " Bạn chưa nhập địa chỉ giao hàng";
+	} else {
+		$addressgh = $_POST["addressgh"];
+	}
+	if (empty($_POST["email"])) {
+		$loi["emails"] = " Bạn chưa nhập email";
+	} else {
+		$email = $_POST["email"];
+	}
+	if (isset($email)) {
+		if (!preg_match("/^[A-Za-z0-9_\.]{6,32}@([a-zA-Z0-9]{2,12})(\.[a-zA-Z]{2,12})+$/", $email)) {
+			$loi["emails"] = " Bạn chưa nhập đúng định dạng email";
+		}
+	}
+	if (empty($_POST["thanhtoan"])) {
+		$loi["tratien"] = " Bạn chưa chọn phương thức thanh toán";
+	} else {
+		$thanhtoan = $_POST["thanhtoan"];
+	}
+
+	if ($username && $telephone && $address && $email && $thanhtoan && $addressgh) {
+		$header_dn->insert("tb_khach_hang", array(
+				"ho_ten"               => $username,
+				"dien_thoai"           => $telephone,
+				"dia_chi"              => $address,
+				"email"                => $email,
+				"hinh_thuc_thanh_toan" => $thanhtoan
+			));
+		$sql1 = "select max(id_don_hang) from tb_don_hang";
+		$data = $header_dn->get_row($sql1);
+		if ($data == 0) {
+			$id_don_hang = 1;
+		} else {
+			$id_don_hang = $data["max(id_don_hang)"]+1;
+		}
+
+		// lưu vào chi tiết hóa đơn
+		foreach ($_SESSION["giohang"] as $id_sach => $soluong) {
+			$header_dn->insert("tb_chitiet_donhang", array(
+					"id_don_hang" => $id_don_hang,
+					"id_sach"     => $id_sach,
+					"soluong"     => $soluong,
+					"gia_ban"     => number_format($tongtienvsvat),
+					"triet_khau"  => "0"
+				));
+		}
+
+		/*
+		$sql2 =
+		"select a.trang_thai,a.id_nv,c.id_don_hang,c.id_sach from tb_sach as a,tb_chitiet_donhang as c where c.id_sach = a.id_sach and c.id_don_hang = $id_don_hang";
+		$data2_dn = $header_dn->get_row($sql2);
+		$header_dn->insert("tb_don_hang",array(
+		"id_don_hang" => $id_don_hang,
+		"trang_thai_don_hang" => $data2_dn["trang_thai"],
+		"id_kh" => $id_don_hang,
+		"id_nv" => $data2_dn["id_nv"],
+		"dia_chi_giao_hang" => $addressgh
+		));*/
+		session_destroy();
+		echo "<span style='color:red;'>Đơn hàng được thanh toán thành công</span>,<a href='index.php'>Trở về trang chủ</a>";
+
+		$header_dn->disconnect();
+	}
+}
+?>
+<form method="post" action="" style="margin-bottom: 30px;">
+<div id="thanhtoan">
+	<div id="topthanhtoan">
+		<span style="font-size: 28px;">Thanh Toán</span><br><br>
+	    <span>Điền vào các mục dưới đây để hoàn thành mua hàng của bạn !</span><br><br>
+	    <a href="dangnhap.php" style="color: #f39955;">Bạn đã là thành viên?Đăng nhập?</a>
+   </div>
+   <br>
+    <div id="house">
+    	<i class="fa fa-home" style="position: relative; color: white;font-size: 30px;"></i><span>BILLING ADDRESS</span>
+    </div>
+    <div id="bodythanhtoan">
+	    <div id="thanhtoanform">
+
+		    	<table>
+		    		<tr>
+		    			<td>Họ và tên</td>
+		    			<td><input type="text" name="username" size="45">
+<?php echo "<br>";
+$header_dn->show_error($loi, 'name');
+?>
+</td>
+		    		</tr>
+		    		<tr>
+		    			<td>Điện thoại</td>
+		    			<td><input type="text" name="telephone" size="45">
+<?php echo "<br>";
+$header_dn->show_error($loi, 'phone');
+?>
+</td>
+		    		</tr>
+		    		<tr>
+		    			<td>Địa chỉ</td>
+		    			<td><input type="text" name="address" size="45">
+<?php echo "<br>";
+$header_dn->show_error($loi, 'diachi');
+?>
+</td>
+		    		</tr>
+		    		<tr>
+		    			<td>Địa chỉ giao hàng</td>
+		    			<td><input type="text" name="addressgh" size="45">
+<?php echo "<br>";
+$header_dn->show_error($loi, 'diachigh');
+?>
+</td>
+		    		</tr>
+		    		<tr>
+		    			<td>Email</td>
+		    			<td><input type="text" name="email" size="45">
+<?php echo "<br>";
+$header_dn->show_error($loi, 'emails');
+?>
+</td>
+		    		</tr>
+		    	</table>
+	    	</div>
+		</div>
+	    <div id="hinhthucthanhtoan">
+	    	<div id="card">
+	    		<i class="fa fa-credit-card" style="position: relative; color: white;font-size: 30px;"></i><span style="font-size: 20px;">PHƯƠNG THỨC THANH TOÁN</span>
+	    	</div>
+	    	<div id="check">
+	    		<input type="radio" name="thanhtoan" value="ATM nội địa/Internet Banking"><span>ATM nội địa/Internet Banking (Miễn phí COD)</span><br><br><br>
+	    		<input type="radio" name="thanhtoan" value="Thẻ quốc tế Visa/Master/JCB"><span>Thẻ quốc tế Visa/Master/JCB (Miễn phí COD)</span><br><br><br>
+	    		<input type="radio" name="thanhtoan" value="Thanh toán bằng tiền mặt khi nhận hàng"><span>Thanh toán bằng tiền mặt khi nhận hàng</span>
+	    		<br><br><br>
+	    		<input type="radio" name="thanhtoan" value="Chuyển khoản ngân hàng"><span>Chuyển khoản ngân hàng (Miễn phí COD)</span>
+<?php echo "<br>";
+$header_dn->show_error($loi, 'tratien');
+?>
+</div>
+	    </div>
+  <div style="clear: left;"></div>
+  <div id="bottomthanhtoan">
+  	<div id="card" style="margin: auto;">
+	    <span>Kiểm tra lại đơn hàng</span>
+	</div>
+	<div id="bottomtable">
+<?php
+if (!isset($_SESSION["giohang"])) {
+	$flag = false;
+} else {
+	foreach ($_SESSION["giohang"] as $id_sach => $soluong) {
+		if (isset($id_sach)) {
+			$flag = true;
+		} else {// đã mua nhưng mà xóa sp
+			$flag = false;
+		}
+	}
+}
+if ($flag == true) {
+	foreach ($_SESSION["giohang"] as $id_sach => $soluong) {
+		$arr[] = "'".$id_sach."'";// $arr = (''123'',''231'') cái dấu ngoặc đầu là của mảng còn ở trong là ở đoạn dưới nhé
+	}
+	$string     = implode(",", $arr);// chuyển mảng thành chuỗi
+	$sql1       = "select id_sach,ten_sach,gia_ban from tb_sach where id_sach in ($string)";
+	$data1_dn   = $header_dn->get_list($sql1);
+	$thanhtien1 = 0;
+	echo "<table border='1' cellspacing='0'>";
+	echo "<tr>";
+	echo "<th>Tên Sản phẩm</th>";
+	echo "<th>Số lượng</th>";// cái này y chang bên giỏ hàng thôi
+	echo "<th>Thành tiền</th>";
+	echo "</tr>";
+	foreach ($data1_dn as $key1 => $value1) {
+		$soluong = $_SESSION["giohang"][$value1["id_sach"]];
+		echo "<tr>";
+		echo "<td>$value1[ten_sach]</td>";
+		echo "<td style='text-align:center;'>$soluong</td>";
+
+		$thanhtien = $soluong*$value1["gia_ban"];
+		$thanhtien1 += $thanhtien;
+		$thanhtien2 = $soluong*$value1["gia_ban"]+$soluong*$value1["gia_ban"]*0.1;
+		$tongtienvsvat += $thanhtien2;
+		echo "<td style='color: red;text-align:center;'>".number_format($thanhtien)." đ</td>";
+
+		echo "</tr>";
+	}
+	echo "<tr>";
+	echo "<td colspan='3'>Thành tiền:<span style='color:red;'> ".number_format($thanhtien1)." đ</span><br>Phí vận chuyển (Miễn phí vận chuyển):<span style='color:red;'> 0 đ</span><br>Tổng Số Tiền (gồm 10% VAT):<span style='color:red;'> ".number_format($tongtienvsvat)." đ</span></td>";
+
+	echo "</tr>";
+	echo "<tr>";
+	echo "<td colspan='3' style='text-align: center;'><input type='submit' name='ok' value='XÁC NHẬN ĐƠN HÀNG' style='color: white;width: 300px;background: #f39801;height: 40px;font-size: 20px;'></td>";
+
+	echo "</tr>";
+	echo "</table>";
+
+}
+?>
+</div>
+  </div>
+</div>
+</form>
+<?php
+require ("bottom.php");
+?>

@@ -1,0 +1,13 @@
+khi mà require_once app_path.'/core/autoload.php';
+thì nó chua ch?y cho t?i khi nó có cái
+$objmvc = new mymvc();thì nó b?t d?u ch?y ? trong file
+autoload.php và nó tìm file trong d?y.
+r?i sau khi xong nó s? require file mymvc.php
+r?i nó ch?y hàm $objmvc->run();
++ vào thanh url : controller = admin thì nó ch?y các ki?u xong
+cho t?i cái dòng $objcontroller = new $controllerclass();
+(bên trong cái file mymvc.php)
+sau do no lai tiepc tuc chay tk autoload de goi toi 
+file AdminController.php, roi chay cai ham trong day.
+cai tk class AdminController ke thua dc tk class controller trong
+file controller.php thi tai vi no do co tk autoload.php

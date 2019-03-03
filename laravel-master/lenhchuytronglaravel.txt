@@ -1,0 +1,27 @@
+lenh tao bang : php artisan make:migration create_bang1_table --create="bang1" (co the se la bang1)
+lenh cho bang tu file migrations vao csdl : php artisan migrate
+lenh xoa bang moi cho vao : php artisan migrate:rollback
+lenh tao 1 file de them cot vao bang1 la : php artisan make:migration add_is_admin_column_to_bang1_tables
+--table="bang1"
+  se ra duoc 1 bang nhu nay : <?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class AddIsAdminColumnToBang1Tables extends Migration
+{
+ 
+    public function up()
+    {
+        //Schema::table("bang1", function (Blueprint $table){ doan nay phai viet
+            $table->integer('is_admin')->unsigned();
+        });
+    }
+
+ 
+    public function down()
+    {
+        //
+    } vao trong do tao them cot gi thi tao xong sao do dung php artisan migrate la no tu them cot
+vao bang1 con muon xoa thi them rollback nhu tren

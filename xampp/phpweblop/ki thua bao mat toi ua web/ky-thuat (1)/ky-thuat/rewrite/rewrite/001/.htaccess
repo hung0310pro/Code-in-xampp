@@ -1,0 +1,22 @@
+
+RewriteEngine on
+
+#ví dụ có trang sản phẩm là product.php
+# link trỏ đến trang xem chi tiết bài viết
+
+RewriteRule ^product-([0-9]+).html$ product.php?id=$1
+
+# viết như trên thì url vào xem sản phẩm có id là 6 như sau
+#  /product-6.html nó sẽ tương ứng product.php?id=6
+
+#xem danh sách sản phẩm theo catid
+RewriteRule  ^list-product-([0-9]+)/$   product.php?catid=$1
+#link SEO
+RewriteRule  ^([a-z0-9\-_]+)-([0-9]+)/$   product.php?catname=$1&catid=$2
+
+#xem chi tiết sản phẩm có kèm theo cả tên nhóm, id nhóm, tên sản phẩm, id sản phẩm
+RewriteRule  ^([a-z0-9\-_]+)-([0-9]+)/([a-z0-9\-_]+)-([0-9]+).html$   product.php?catname=$1&catid=$2&pname=$3&pid=$4
+
+
+# giả sử MVC xem danh sách sản phẩm thì có 4 tham số: controller, action, catid, page 
+RewriteRule  ^([a-z0-9\-_]+)/([a-z0-9\-_]+)/([0-9]+)/([0-9]+)$   index.php?controller=$1&action=$2&catid=$3&page=$4

@@ -1,0 +1,79 @@
+<div class="register-box">
+  <div class="register-logo">
+    <a href="index.html"><b>Đăng</b>Ký</a>
+  </div>
+
+  <div class="register-box-body">
+    <?php
+
+    if(isset($this->views->error)) {
+        foreach ($this->views->error as $msg) {
+            echo "<div style='color:red;'>" . $msg . "</div>"; 
+        }
+    }
+    if(isset($this->views->success)){
+        foreach ($this->views->success as $msg) {
+            echo "<div style='color:green;'>" . $msg . "</div>";
+        }
+    }
+
+?>
+    <p class="login-box-msg">Đăng ký tài khoản</p>
+
+    <form  action="" method="POST">
+       <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="Họ và tên"  name="hoten" id="hoten">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <div style="color: red;" id="ten1">xin mời nhập họ tên</div>
+        <div style="color: red;" id="ten2">Tên của bạn phải dài hơn 5 ký tự và không chứa ký tự đặc biệt</div>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="Username"  name="username" id="username">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <div style="color: red;" id="user1" >xin mời nhập Username</div>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="Email" name="email" id="email">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <div style="color: red;" id="email1">xin mời nhập Email</div>
+        <div style="color: red;" id="email2">bạn chưa nhập đúng định dạng Email</div>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" placeholder="Password" name="password" id="password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        <div style="color: red;" id="password1">xin mời nhập Password</div>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" placeholder="Nhập lại password" 
+        name="password_confirm" id="password_confirm"> 
+        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+        <div style="color: red;" id="password_confirm1">Bạn chưa nhập lại Password hoặc chưa khớp với Password</div>
+      </div>
+       <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="Địa chỉ" name="diachi" id="diachi">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <div style="color: red;" id="diachi1">xin mời nhập địa chỉ</div>
+      </div>
+      <div class="row">
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <input type="submit" name="dangky" id="dangky" value="Đăng Ký">
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+    <div class="social-auth-links text-center">
+      <p>- Hoặc -</p>
+      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using
+        Facebook</a>
+      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
+        Google+</a>
+    </div>
+
+    <a href="?controller=user&action=login" class="text-center">Chuyển tới trang đăng nhập</a>
+  </div>
+  <!-- /.form-box -->
+</div>
+
+

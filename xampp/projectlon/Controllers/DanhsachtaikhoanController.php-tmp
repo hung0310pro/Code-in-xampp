@@ -1,0 +1,6 @@
+<?php
+class DanhsachController extends Controller {
+	public function danhsachtaikhoanAction() {
+
+	}
+}

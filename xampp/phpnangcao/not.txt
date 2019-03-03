@@ -1,0 +1,39 @@
+﻿+ self có thể sử dụng TRONG hàm tĩnh, gọi tới được cả hàm tĩnh lẫn biến tĩnh.
++ self có thể gọi tới phương thức kp là tĩnh như bt, nhưng self sẽ gọi tới Đối tượng(class) khai báo nó.(xem ví dụ là biết)
++ self cx có thể dùng để gọi biến và hàm là tĩnh cũng như static, Classname, ví dụ self::$ten;
+
++ this chỉ gọi tới đối tượng hiện tại(xem ví dụ là biết)
++ this không thể sử dụng TRONG hàm tĩnh, cx không thể gọi tới biến tĩnh.
++ this có thể trỏ, gọi tới hàm tĩnh bình thường.
+
++ static thì cx như this chỉ gọi tới đối tượng hiện tại của nó
+
++ khi cần gọi tới biến hằng(const) trong ngoài class thì dùng Nameclass::tenhang;
++ còn khi gọi tới hằng trong hàm thì dùng self::tenhang;
+
++ nếu để final cho class thì k có 1 class nào có thể kế thừa đc nó
++ con nếu để final cho 1 hàm thì không thể viết lại hàm đó (tính đa hình);
+
++ khi gọi tới 1 hàm tĩnh ở Ngoài class thì dùng Nameclass::hamtinh();
++ khi gọi tới 1 biến tĩnh ở Ngoài class thì dùng Nameclass::$tenbien;
+
++ khi 1 lớp con kế thừa 1 lớp cha khác mà trong lớp cha có hàm tĩnh thì mình sẽ gọi là parent::hamtinh();
+và biến thì là parent::$bientinh;(self,static,Nameclass), riêng vs hàm có thể dùng $this->
+
++interface không phải là 1 lớp chỉ là 1 khuân mẫu
+- Mọi lớp implement nó phải khai báo đủ hàm.
+- interface có thể kế thừa các imterface khác.
+- 1 lớp có thể implement kế thừa nhiều interface.
+- trong interface hàm chỉ đc định nghĩa tên.
+- trong interface k tạo biến nhưng có thể cho Hằng.
+- không thể khởi tạo đối tượng tới interface.
+
++ abstract
+- Không định nghĩa hàm trong lớp,
+- Chỉ sử dung protected và public
+- khi kế thừa thì phải review lại hết các hàm có trong lớp
+- biến thì k có abstract, nhưng hàm thì phải có
+- không thể khởi tạo tới lớp abstract, ví dụ $aaa = new lopabstract() 
+
+
+

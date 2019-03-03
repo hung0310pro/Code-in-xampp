@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4f870e6b-86fb-4c79-bbf7-3034de9c9b41" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MVCAHT2/Controllers/SachController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="273">
+              <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+              <folding>
+                <element signature="n#setBook#0;n#SachController#0;n#!!top" expanded="true" />
+                <element signature="n#getBook#0;n#SachController#0;n#!!top" expanded="true" />
+                <element signature="n#__construct#0;n#SachController#0;n#!!top" expanded="true" />
+                <element signature="n#getListsachs#0;n#SachController#0;n#!!top" expanded="true" />
+                <element signature="n#updateSach#0;n#SachController#0;n#!!top" expanded="true" />
+                <element signature="n#addSach#0;n#SachController#0;n#!!top" expanded="true" />
+                <element signature="n#deleteSach#0;n#SachController#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MVCAHT2/Core/Database.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="483">
+              <caret line="46" column="35" lean-forward="true" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
+              <folding>
+                <element signature="n#ExecQuerySelect#0;n#Database#0;n#!!top" expanded="true" />
+                <element signature="n#Delete_Query#0;n#Database#0;n#!!top" expanded="true" />
+                <element signature="n#Add_Query#0;n#Database#0;n#!!top" expanded="true" />
+                <element signature="n#ExcQuery#0;n#Database#0;n#!!top" expanded="true" />
+                <element signature="n#__destruct#0;n#Database#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MVCAHT2/Views/sach/Getlistsachs.phtml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="83" column="21" lean-forward="true" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
+              <folding>
+                <element signature="e#3207#3210#0#PHP" expanded="true" />
+                <element signature="e#3250#3253#0#PHP" expanded="true" />
+                <element signature="e#3307#3310#0#PHP" expanded="true" />
+                <element signature="e#3362#3365#0#PHP" expanded="true" />
+                <element signature="e#3509#3512#0#PHP" expanded="true" />
+                <element signature="e#3699#3702#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MVCAHT2/Core/MyMVC.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MVCAHT2/Core/Controller.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-84">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+              <folding>
+                <element signature="n#__construct#0;n#Controller#0;n#!!top" expanded="true" />
+                <element signature="n#renderviews#0;n#Controller#0;n#!!top" expanded="true" />
+                <element signature="n#showContent#0;n#Controller#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MVCAHT2/Views/layout/Sach.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="278">
+              <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+              <folding>
+                <element signature="e#1074#1079#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MVCAHT2/Models/SachModel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="29" column="28" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="28" />
+              <folding>
+                <element signature="n#setNamebook#0;n#SachModel#0;n#!!top" expanded="true" />
+                <element signature="n#getNamebook#0;n#SachModel#0;n#!!top" expanded="true" />
+                <element signature="n#setAuthor#0;n#SachModel#0;n#!!top" expanded="true" />
+                <element signature="n#getAuthor#0;n#SachModel#0;n#!!top" expanded="true" />
+                <element signature="n#setPyear#0;n#SachModel#0;n#!!top" expanded="true" />
+                <element signature="n#getPyear#0;n#SachModel#0;n#!!top" expanded="true" />
+                <element signature="n#setId#0;n#SachModel#0;n#!!top" expanded="true" />
+                <element signature="n#getId#0;n#SachModel#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MVCAHT2/Models/ReporSachModel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="26" column="76" selection-start-line="26" selection-start-column="76" selection-end-line="26" selection-end-column="76" />
+              <folding>
+                <element signature="n#__construct#0;n#ReporSachModel#0;n#!!top" expanded="true" />
+                <element signature="n#getListbook#0;n#ReporSachModel#0;n#!!top" expanded="true" />
+                <element signature="n#updateBook#0;n#ReporSachModel#0;n#!!top" expanded="true" />
+                <element signature="n#themSach#0;n#ReporSachModel#0;n#!!top" expanded="true" />
+                <element signature="n#deleteBook#0;n#ReporSachModel#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MVCAHT2/Models/ConectionModel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="35" column="44" lean-forward="true" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
+              <folding>
+                <element signature="n#xemDanhsach#0;n#ConectionModel#0;n#!!top" expanded="true" />
+                <element signature="n#xemchitiet#0;n#ConectionModel#0;n#!!top" expanded="true" />
+                <element signature="n#add#0;n#ConectionModel#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>getSach</find>
+      <find>getRowsach</find>
+      <find>updateBook</find>
+      <find>getRowsinhvien</find>
+      <find>xemChitiet</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/MVCAHT2/Models/SachModel.php" />
+        <option value="$PROJECT_DIR$/MVCAHT2/Models/SinhVienModel.php" />
+        <option value="$PROJECT_DIR$/MVCAHT2/Models/ReporSinhVienModel.php" />
+        <option value="$PROJECT_DIR$/MVCAHT2/Models/TheMuonModel.php" />
+        <option value="$PROJECT_DIR$/MVCAHT2/Views/sach/Getlistsachs.phtml" />
+        <option value="$PROJECT_DIR$/MVCAHT2/Views/sach/Updatesach.phtml" />
+        <option value="$PROJECT_DIR$/MVCAHT2/Views/sinhvien/Getlistsinhvien.phtml" />
+        <option value="$PROJECT_DIR$/MVCAHT2/Views/sinhvien/Updatesinhvien.phtml" />
+        <option value="$PROJECT_DIR$/MVCAHT2/Controllers/SinhVienController.php" />
+        <option value="$PROJECT_DIR$/MVCAHT2/Views/sinhvien/Watchdetail.phtml" />
+        <option value="$PROJECT_DIR$/MVCAHT2/Models/ConectionModel.php" />
+        <option value="$PROJECT_DIR$/MVCAHT2/Models/ReporTheMuonModel.php" />
+        <option value="$PROJECT_DIR$/MVCAHT2/Views/themuon/Updatemuon.phtml" />
+        <option value="$PROJECT_DIR$/MVCAHT2/Controllers/TheMuonController.php" />
+        <option value="$PROJECT_DIR$/MVCAHT2/Views/themuon/Getlistmuon.phtml" />
+        <option value="$PROJECT_DIR$/MVCAHT2/Core/Database.php" />
+        <option value="$PROJECT_DIR$/MVCAHT2/Views/themuon/Addmuon.phtml" />
+        <option value="$PROJECT_DIR$/MVCAHT2/Models/ReporSachModel.php" />
+        <option value="$PROJECT_DIR$/MVCAHT2/Controllers/SachController.php" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-6" />
+    <option name="y" value="11" />
+    <option name="width" value="1276" />
+    <option name="height" value="688" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="MVCAHT2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MVCAHT2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MVCAHT2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MVCAHT2" type="462c0819:PsiDirectoryNode" />
+              <item name="MVCAHT2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MVCAHT2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MVCAHT2" type="462c0819:PsiDirectoryNode" />
+              <item name="MVCAHT2" type="462c0819:PsiDirectoryNode" />
+              <item name="Views" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../laravelAHT" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4f870e6b-86fb-4c79-bbf7-3034de9c9b41" name="Default Changelist" comment="" />
+      <created>1551060162480</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1551060162480</updated>
+      <workItem from="1551060165323" duration="3315000" />
+      <workItem from="1551068626380" duration="2284000" />
+      <workItem from="1551188785046" duration="8466000" />
+      <workItem from="1551197901782" duration="16000" />
+      <workItem from="1551250246040" duration="50000" />
+      <workItem from="1551251005134" duration="2349000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="16480000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <layout>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.2057101" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="0" />
+      <window_info anchor="bottom" id="Database Changes" order="1" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="3" />
+      <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="5" />
+      <window_info anchor="bottom" id="Find" order="6" />
+      <window_info anchor="bottom" id="Run" order="7" />
+      <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="11" />
+      <window_info anchor="right" id="Database" order="0" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/index.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Models/SinhVienModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="55" column="26" selection-start-line="55" selection-start-column="26" selection-end-line="55" selection-end-column="26" />
+          <folding>
+            <element signature="n#setId#0;n#SinhVienModel#0;n#!!top" expanded="true" />
+            <element signature="n#getId#0;n#SinhVienModel#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Models/TheMuonModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="593">
+          <caret line="57" column="25" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
+          <folding>
+            <element signature="n#setId#0;n#TheMuonModel#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Views/sach/Updatesach.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="36" column="76" lean-forward="true" selection-start-line="36" selection-start-column="76" selection-end-line="36" selection-end-column="76" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#222#225#0#PHP" expanded="true" />
+            <element signature="e#993#996#0#PHP" expanded="true" />
+            <element signature="e#1261#1264#0#PHP" expanded="true" />
+            <element signature="e#1526#1529#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Views/sinhvien/Updatesinhvien.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="28" column="118" lean-forward="true" selection-start-line="28" selection-start-column="118" selection-end-line="28" selection-end-column="118" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#210#213#0#PHP" expanded="true" />
+            <element signature="e#897#900#0#PHP" expanded="true" />
+            <element signature="e#1153#1156#0#PHP" expanded="true" />
+            <element signature="e#1379#1382#0#PHP" expanded="true" />
+            <element signature="e#1597#1600#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Views/sinhvien/Getlistsinhvien.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="114" column="29" lean-forward="true" selection-start-line="114" selection-start-column="29" selection-end-line="114" selection-end-column="29" />
+          <folding>
+            <element signature="e#3699#3702#0#PHP" expanded="true" />
+            <element signature="e#3742#3745#0#PHP" expanded="true" />
+            <element signature="e#3795#3798#0#PHP" expanded="true" />
+            <element signature="e#3879#3882#0#PHP" expanded="true" />
+            <element signature="e#4014#4017#0#PHP" expanded="true" />
+            <element signature="e#4257#4260#0#PHP" expanded="true" />
+            <element signature="e#4484#4487#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Models/ReporSinhVienModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-371">
+          <caret line="21" column="36" lean-forward="true" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+          <folding>
+            <element signature="n#getListsv#0;n#ReporSinhVienModel#0;n#!!top" expanded="true" />
+            <element signature="n#addSv#0;n#ReporSinhVienModel#0;n#!!top" expanded="true" />
+            <element signature="n#getRowsv#0;n#ReporSinhVienModel#0;n#!!top" expanded="true" />
+            <element signature="n#updateSv#0;n#ReporSinhVienModel#0;n#!!top" expanded="true" />
+            <element signature="n#deleteSv#0;n#ReporSinhVienModel#0;n#!!top" expanded="true" />
+            <element signature="n#getListthe#0;n#ReporSinhVienModel#0;n#!!top" expanded="true" />
+            <element signature="n#getListsach#0;n#ReporSinhVienModel#0;n#!!top" expanded="true" />
+            <element signature="n#namesach#0;n#ReporSinhVienModel#0;n#!!top" expanded="true" />
+            <element signature="n#countSach#0;n#ReporSinhVienModel#0;n#!!top" expanded="true" />
+            <element signature="n#countSachstate#0;n#ReporSinhVienModel#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Controllers/SinhVienController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="203" column="64" lean-forward="true" selection-start-line="203" selection-start-column="64" selection-end-line="203" selection-end-column="64" />
+          <folding>
+            <element signature="n#setStudents#0;n#SinhVienController#0;n#!!top" expanded="true" />
+            <element signature="n#getStudents#0;n#SinhVienController#0;n#!!top" expanded="true" />
+            <element signature="n#setListhesvs#0;n#SinhVienController#0;n#!!top" expanded="true" />
+            <element signature="n#getListthesv#0;n#SinhVienController#0;n#!!top" expanded="true" />
+            <element signature="n#setListsachsv#0;n#SinhVienController#0;n#!!top" expanded="true" />
+            <element signature="n#getListsachsv#0;n#SinhVienController#0;n#!!top" expanded="true" />
+            <element signature="n#setSumpaid#0;n#SinhVienController#0;n#!!top" expanded="true" />
+            <element signature="n#getSumpaid#0;n#SinhVienController#0;n#!!top" expanded="true" />
+            <element signature="n#setSumunpaid#0;n#SinhVienController#0;n#!!top" expanded="true" />
+            <element signature="n#getSumunpaid#0;n#SinhVienController#0;n#!!top" expanded="true" />
+            <element signature="n#setSumbook#0;n#SinhVienController#0;n#!!top" expanded="true" />
+            <element signature="n#getSumbook#0;n#SinhVienController#0;n#!!top" expanded="true" />
+            <element signature="n#__construct#0;n#SinhVienController#0;n#!!top" expanded="true" />
+            <element signature="n#getListsinhvien#0;n#SinhVienController#0;n#!!top" expanded="true" />
+            <element signature="n#addSinhvien#0;n#SinhVienController#0;n#!!top" expanded="true" />
+            <element signature="n#updateSinhvien#0;n#SinhVienController#0;n#!!top" expanded="true" />
+            <element signature="n#deleteSinhvien#0;n#SinhVienController#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Views/sinhvien/Watchdetail.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="67" column="50" selection-start-line="67" selection-start-column="50" selection-end-line="67" selection-end-column="50" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#569#572#0#PHP" expanded="true" />
+            <element signature="e#774#777#0#PHP" expanded="true" />
+            <element signature="e#980#983#0#PHP" expanded="true" />
+            <element signature="e#1186#1189#0#PHP" expanded="true" />
+            <element signature="e#1424#1427#0#PHP" expanded="true" />
+            <element signature="e#1617#1620#0#PHP" expanded="true" />
+            <element signature="e#2547#2550#0#PHP" expanded="true" />
+            <element signature="e#2569#2572#0#PHP" expanded="true" />
+            <element signature="e#2629#2632#0#PHP" expanded="true" />
+            <element signature="e#2651#2654#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Views/themuon/Updatemuon.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="51" column="45" lean-forward="true" selection-start-line="51" selection-start-column="45" selection-end-line="51" selection-end-column="45" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="e#933#936#0#PHP" expanded="true" />
+            <element signature="e#1164#1167#0#PHP" expanded="true" />
+            <element signature="e#1517#1522#0#PHP" expanded="true" />
+            <element signature="e#1683#1688#0#PHP" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#form#0;n#div#1;n#div#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Views/themuon/Addmuon.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="53" column="78" selection-start-line="53" selection-start-column="78" selection-end-line="53" selection-end-column="78" />
+          <folding>
+            <element signature="e#1405#1408#0#PHP" expanded="true" />
+            <element signature="e#1424#1427#0#PHP" expanded="true" />
+            <element signature="e#1873#1876#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Models/ReporTheMuonModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+          <folding>
+            <element signature="n#__construct#0;n#ReporTheMuonModel#0;n#!!top" expanded="true" />
+            <element signature="n#getListsinhvien#0;n#ReporTheMuonModel#0;n#!!top" expanded="true" />
+            <element signature="n#getListsach#0;n#ReporTheMuonModel#0;n#!!top" expanded="true" />
+            <element signature="n#getListmuons#0;n#ReporTheMuonModel#0;n#!!top" expanded="true" />
+            <element signature="n#getRowmuon#0;n#ReporTheMuonModel#0;n#!!top" expanded="true" />
+            <element signature="n#updateMuons#0;n#ReporTheMuonModel#0;n#!!top" expanded="true" />
+            <element signature="n#deleteMuons#0;n#ReporTheMuonModel#0;n#!!top" expanded="true" />
+            <element signature="n#addMuons#0;n#ReporTheMuonModel#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Views/themuon/Getlistmuon.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="593">
+          <caret line="85" column="37" selection-start-line="85" selection-start-column="37" selection-end-line="85" selection-end-column="37" />
+          <folding>
+            <element signature="e#2515#2518#0#PHP" expanded="true" />
+            <element signature="e#2558#2561#0#PHP" expanded="true" />
+            <element signature="e#2609#2612#0#PHP" expanded="true" />
+            <element signature="e#2696#2699#0#PHP" expanded="true" />
+            <element signature="e#3074#3077#0#PHP" expanded="true" />
+            <element signature="e#3200#3203#0#PHP" expanded="true" />
+            <element signature="e#3368#3371#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Controllers/TheMuonController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="593">
+          <caret line="108" column="30" selection-start-line="108" selection-start-column="30" selection-end-line="108" selection-end-column="30" />
+          <folding>
+            <element signature="n#__construct#0;n#TheMuonController#0;n#!!top" expanded="true" />
+            <element signature="n#setMuons#0;n#TheMuonController#0;n#!!top" expanded="true" />
+            <element signature="n#getMuons#0;n#TheMuonController#0;n#!!top" expanded="true" />
+            <element signature="n#setSachs#0;n#TheMuonController#0;n#!!top" expanded="true" />
+            <element signature="n#getSachs#0;n#TheMuonController#0;n#!!top" expanded="true" />
+            <element signature="n#setHocsinhs#0;n#TheMuonController#0;n#!!top" expanded="true" />
+            <element signature="n#getHocsinhs#0;n#TheMuonController#0;n#!!top" expanded="true" />
+            <element signature="n#addMuon#0;n#TheMuonController#0;n#!!top" expanded="true" />
+            <element signature="n#updateMuon#0;n#TheMuonController#0;n#!!top" expanded="true" />
+            <element signature="n#deleteMuon#0;n#TheMuonController#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Models/SachModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="29" column="28" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="28" />
+          <folding>
+            <element signature="n#setNamebook#0;n#SachModel#0;n#!!top" expanded="true" />
+            <element signature="n#getNamebook#0;n#SachModel#0;n#!!top" expanded="true" />
+            <element signature="n#setAuthor#0;n#SachModel#0;n#!!top" expanded="true" />
+            <element signature="n#getAuthor#0;n#SachModel#0;n#!!top" expanded="true" />
+            <element signature="n#setPyear#0;n#SachModel#0;n#!!top" expanded="true" />
+            <element signature="n#getPyear#0;n#SachModel#0;n#!!top" expanded="true" />
+            <element signature="n#setId#0;n#SachModel#0;n#!!top" expanded="true" />
+            <element signature="n#getId#0;n#SachModel#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Models/ConectionModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="35" column="44" lean-forward="true" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
+          <folding>
+            <element signature="n#xemDanhsach#0;n#ConectionModel#0;n#!!top" expanded="true" />
+            <element signature="n#xemchitiet#0;n#ConectionModel#0;n#!!top" expanded="true" />
+            <element signature="n#add#0;n#ConectionModel#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Models/ReporSachModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="26" column="76" selection-start-line="26" selection-start-column="76" selection-end-line="26" selection-end-column="76" />
+          <folding>
+            <element signature="n#__construct#0;n#ReporSachModel#0;n#!!top" expanded="true" />
+            <element signature="n#getListbook#0;n#ReporSachModel#0;n#!!top" expanded="true" />
+            <element signature="n#updateBook#0;n#ReporSachModel#0;n#!!top" expanded="true" />
+            <element signature="n#themSach#0;n#ReporSachModel#0;n#!!top" expanded="true" />
+            <element signature="n#deleteBook#0;n#ReporSachModel#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Core/Database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="46" column="35" lean-forward="true" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
+          <folding>
+            <element signature="n#ExecQuerySelect#0;n#Database#0;n#!!top" expanded="true" />
+            <element signature="n#Delete_Query#0;n#Database#0;n#!!top" expanded="true" />
+            <element signature="n#Add_Query#0;n#Database#0;n#!!top" expanded="true" />
+            <element signature="n#ExcQuery#0;n#Database#0;n#!!top" expanded="true" />
+            <element signature="n#__destruct#0;n#Database#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Controllers/SachController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+          <folding>
+            <element signature="n#setBook#0;n#SachController#0;n#!!top" expanded="true" />
+            <element signature="n#getBook#0;n#SachController#0;n#!!top" expanded="true" />
+            <element signature="n#__construct#0;n#SachController#0;n#!!top" expanded="true" />
+            <element signature="n#getListsachs#0;n#SachController#0;n#!!top" expanded="true" />
+            <element signature="n#updateSach#0;n#SachController#0;n#!!top" expanded="true" />
+            <element signature="n#addSach#0;n#SachController#0;n#!!top" expanded="true" />
+            <element signature="n#deleteSach#0;n#SachController#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Views/sach/Getlistsachs.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="83" column="21" lean-forward="true" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
+          <folding>
+            <element signature="e#3207#3210#0#PHP" expanded="true" />
+            <element signature="e#3250#3253#0#PHP" expanded="true" />
+            <element signature="e#3307#3310#0#PHP" expanded="true" />
+            <element signature="e#3362#3365#0#PHP" expanded="true" />
+            <element signature="e#3509#3512#0#PHP" expanded="true" />
+            <element signature="e#3699#3702#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Views/layout/Sach.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+          <folding>
+            <element signature="e#1074#1079#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Core/MyMVC.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVCAHT2/Core/Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-84">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="n#__construct#0;n#Controller#0;n#!!top" expanded="true" />
+            <element signature="n#renderviews#0;n#Controller#0;n#!!top" expanded="true" />
+            <element signature="n#showContent#0;n#Controller#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

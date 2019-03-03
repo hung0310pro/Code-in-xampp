@@ -1,0 +1,109 @@
+
+
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-12">
+				<div class="aside">
+						<h3 class="aside-title" style="font-size: 25px;"><?=$this->views->get_dm["ten_the_loai"]?></h>
+					</div>
+				</div>
+				<div id="aside" class="col-md-3">
+					<div class="banner banner-2">
+						<img src="Public/image/img6.jpg" alt="" style="height: 481px;">
+					</div>
+					<div class="banner banner-2">
+						<img src="Public/image/img7.jpg" alt="" style="height: 481px;">
+					</div>
+				</div>
+				<!-- /ASIDE -->
+
+				<!-- MAIN -->
+				<div id="main" class="col-md-9">
+						<div class="row">
+		        <?php foreach ($this->views->get_sachdm as $key => $value) { 
+                   $images_url = base_path.'Public/image/'.$value['hinh_anh'];
+                   $giamgia = ceil((100 - (($value["gia_ban"]/$value["gia_goc"])*100)));
+		        ?>
+							<div class="col-md-4 col-sm-6 col-xs-6">
+								<div class="product product-single">
+									<div class="product-thumb">
+										<div class="product-label">
+											<span class="sale">-<?=$giamgia?>%</span>
+										</div>
+										<a href="?controller=trangphu-sanpham&action=chitietsanpham&id=<?= $value['id'] ?>"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button></a>
+										<img src="<?=$images_url?>" alt="">
+									</div>
+									<div class="product-body">
+										<h3 class="product-price"><?=$value["gia_ban"]?>đ<del class="product-old-price"><?=$value["gia_goc"]?></del></h3>
+										<div class="product-rating">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o empty"></i>
+										</div>
+										<h2 class="product-name"><a href="?controller=trangphu-sanpham&action=chitietsanpham&id=<?= $value['id']?>"><?=$value["ten_sach"]?></a></h2>
+										<div class="product-btns">
+											<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+											<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+											<a href="?action=add_cart&id=<?=$value['id']?>"><button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button></a>
+										</div>
+									</div>
+								</div>
+							</div>
+				  <?php } ?>
+						</div>
+
+					<!-- /STORE -->
+
+					<!-- store bottom filter -->
+					<div class="store-filter clearfix">
+						  <div class="pagination" style="float: right;margin-right: -150px;width: 300px;">
+           <?php 
+            // PHẦN HIỂN THỊ PHÂN TRANG
+            // BƯỚC 7: HIỂN THỊ PHÂN TRANG
+ 
+            // nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
+            if ($this->views->current_pages > 1 && $this->views->total_pages > 1){
+            	?>
+                 <a href="?controller=trangphu-sanpham&action=sanphamdanhmuc&id=<?=$this->views->id?>&page=<?=($this->views->current_pages-1)?>" style="font-size:16px;color:blue;">Prev | </a>
+            <?php     
+            }
+ 
+            // Lặp khoảng giữa
+            for ($i = 1; $i <= $this->views->total_pages; $i++){
+                // Nếu là trang hiện tại thì hiển thị thẻ span
+                // ngược lại hiển thị thẻ a
+                if ($i == $this->views->current_pages){
+                    echo '<span style="font-size:16px;color:red;">'.$i.' |</span>  ';
+                }
+                else{
+                  ?> <a href="?controller=trangphu-sanpham&action=sanphamdanhmuc&id=<?=$this->views->id?>&page=<?=$i?>" style="font-size:16px;color:blue;"><?= $i ?> |</a>
+               <?php   
+                }
+            }
+ 
+            // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
+            if ($this->views->current_pages < $this->views->total_pages && $this->views->total_pages > 1){
+            	?>
+                 <a href="?controller=trangphu-sanpham&action=sanphamdanhmuc&id=<?=$this->views->id?>&page=<?=($this->views->current_pages+1)?>" style="font-size:16px;color:blue;">Next</a>
+                 <?php
+            }
+        
+           ?>
+        </div>
+					</div>
+					<!-- /store bottom filter -->
+				</div>
+				<!-- /MAIN -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+	

@@ -1,0 +1,81 @@
+<!--lúc này cái file này nó được nằm trong hàm showcontent của Class AdminUserController
+ nên là nó được trỏ đến mấy thuộc tính và phươn thức trong class này bằng $this. ví dụ như ở
+ dưới $this->view->danh_sach, ngoài ra ở cái MyMVC.php còn trỏ tới hàm indexAction() ở trong AdminUserController
+ do đó mới cóc cái $this->view->danh_sach. hay có thể hiểu khi đó indexAction() và cái này index.phtml này nằm cùng 1
+ trang rồi
+ -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table{
+            text-align: center;
+            margin: auto;
+        }
+        td{
+            color: red;
+            padding: 10px;
+        }
+
+        td a{
+            text-decoration: none;
+            color: olivedrab;
+        }
+    </style>
+    <script>
+        function xoa() {
+            if(confirm("bạn có muốn thật sự xóa không")){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+<form>
+    <table border="1" cellspacing="0">
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Họ tên</th>
+            <th>Ngày sinh</th>
+            <th>Giới tính</th>
+            <th>Điện thoại</th>
+            <th>Địa chỉ</th>
+            <th>Thêm</th>
+            <th>Sửa</th>
+            <th>Xóa</th>
+        </tr>
+    <?php
+       foreach ($this->view->danh_sach as $danh_sach) {// cái mình gán trong database nhé nó là 1obj check mà xem
+
+            echo'<tr >
+            <td >'.$danh_sach->id_tai_khoan.'</td >
+            <td >'.$danh_sach->username.'</td >
+            <td >'.$danh_sach->email.'</td >
+            <td >'.$danh_sach->ho_ten.'</td >
+            <td >'.$danh_sach->ngay_sinh.'</td >
+            <td >'.$danh_sach->gioi_tinh.'</td >
+            <td >'.$danh_sach->dien_thoai.'</td >
+            <td >'.$danh_sach->dia_chi.'</td >
+            <td ><a href = "?controller=admin-user&action=add" > Thêm</a ></td >
+            <td ><a href = "?controller=admin-user&action=update&id='.$danh_sach->id_tai_khoan.'" > Sửa</a ></td >
+            <td ><a href = "?controller=admin-user&action=delete&id='.$danh_sach->id_tai_khoan.'"
+             onclick="return xoa()"> Xóa</a ></td >
+        </tr >';
+
+        }
+
+    ?>
+    </table>
+</form>
+</body>
+</html>
+

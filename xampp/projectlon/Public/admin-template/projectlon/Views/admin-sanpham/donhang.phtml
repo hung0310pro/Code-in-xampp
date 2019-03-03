@@ -1,0 +1,148 @@
+
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- ASIDE -->
+			<!-- 	<div id="aside" class="col-md-3" style="margin-left: -17px;margin-top: 20px;">
+				<div >
+				                <div class="banner banner-2">
+					<img src="Public/image/img6.jpg" alt="" style="height: 481px;">
+				</div>
+				<div class="banner banner-2">
+					<img src="Public/image/img7.jpg" alt="" style="height: 481px;">
+				</div>
+			</div>
+			</div> -->
+				<!-- /ASIDE -->
+
+				<!-- MAIN -->
+				<div id="main" class="col-lg-12">
+					<!-- store top filter -->
+				
+					<!-- /store top filter -->
+					<div id="store" style="margin-left: 17px;">
+                     <div class="row" id="donhang">
+                     	<?php
+                     	 if(isset($_SESSION["chinhsua"])){
+                echo "<div style='color:green;font-size:20px;'>" .$_SESSION["chinhsua"]. "</div>"; 
+                unset($_SESSION["chinhsua"]);
+            }
+                ?>
+                     	  <h2>Danh sách đơn hàng</h2>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Họ Tên</th>
+                            <th>Điện thoại</th>
+                            <th>Địa chỉ giao hàng</th>
+                            <th>Mã đơn hàng</th>
+                            <th>Ngày mua</th>
+                            <th>Hình thức thanh toán</th>
+                            <th>Mã sách</th>
+                            <th>Số lượng</th>
+                            <th>Giá bán</th>
+                            <th>Triết khấu</th>
+                            <th>Trạng thái</th>
+                            <th>Duyệt đơn hàng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    
+                    foreach ($this->views->donhang as $key => $value) {
+                  
+                    ?>
+                        <tr>
+                            <td><?= $value["id"] ?></td>
+                            <td><?= $value["ho_ten"] ?></td>                    
+                            <td><?= $value["dien_thoai"] ?></td>
+                            <td><?= $value["dia_chi_giao_hang"] ?></td>
+                           	<td><?= $value["id_don_hang"] ?></td>
+                            <td><?= $value["ngay_mua"] ?></td>
+                            <td><?= $value["hinh_thuc_thanh_toan"] ?></td>
+                           	<td><?= $value["id_sach"] ?></td>
+                            <td><?= $value["so_luong"] ?></td>
+                            <td><?= number_format($value["gia_ban"]) ?>đ</td>
+                           	<td><?= $value["triet_khau"] ?>%</td> 
+                           	<td>
+                           		<select>
+                           			<?php
+                                       if($value["trang_thai"] == 1){
+                           			?>
+                           			<option>Chưa giao</option>
+                           		<?php }
+                           		else{ 
+                           			?>
+                           			<option>Đã giao</option>
+                           		<?php } ?>
+                           		</select>
+                           	</td>
+                           	<td><a href="?controller=trangphu-sanpham&action=chinhdon&id=<?=$value["id_don_hang"]?>">Chỉnh</a></td>                           
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                       <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Họ Tên</th>
+                            <th>Điện thoại</th>
+                            <th>Địa chỉ giao hàng</th>
+                            <th>Mã đơn hàng</th>
+                            <th>Ngày mua</th>
+                            <th>Hình thức thanh toán</th>
+                            <th>Mã sách</th>
+                            <th>Số lượng</th>
+                            <th>Giá bán</th>
+                            <th>Triết khấu</th>
+                            <th>Trạng thái</th>
+                            <th>Duyệt đơn hàng</th>
+                        </tr>
+                    </thead>
+                </table>
+                     </div>
+					</div>
+					<!-- /STORE -->
+					<!-- store bottom filter -->
+				  <div class="pagination" style="float: right;margin-right: -150px;width: 300px;">
+           <?php 
+            // PHẦN HIỂN THỊ PHÂN TRANG
+            // BƯỚC 7: HIỂN THỊ PHÂN TRANG
+ 
+            // nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
+            if ($this->views->current_pages > 1 && $this->views->total_pages > 1){
+                echo '<a href="?controller=trangphu-sanpham&action=donhang&page='.($this->views->current_pages-1).'" style="font-size:16px;color:blue;">Prev | </a>';
+            }
+ 
+            // Lặp khoảng giữa
+            for ($i = 1; $i <= $this->views->total_pages; $i++){
+                // Nếu là trang hiện tại thì hiển thị thẻ span
+                // ngược lại hiển thị thẻ a
+                if ($i == $this->views->current_pages){
+                    echo '<span style="font-size:16px;color:red;">'.$i.' |</span>  ';
+                }
+                else{
+                    echo '<a href="?controller=trangphu-sanpham&action=donhang&page='.$i.'" style="font-size:16px;color:blue;">'.$i.' |</a> ';
+                }
+            }
+ 
+            // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
+            if ($this->views->current_pages < $this->views->total_pages && $this->views->total_pages > 1){
+                echo '<a href="?controller=trangphu-sanpham&action=donhang&page='.($this->views->current_pages+1).'" style="font-size:16px;color:blue;">Next</a> ';
+            }
+           ?>
+        </div>
+
+
+
+					<!-- /store bottom filter -->
+				</div>
+				<!-- /MAIN -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+

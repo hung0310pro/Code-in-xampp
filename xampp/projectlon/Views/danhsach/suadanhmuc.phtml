@@ -1,0 +1,70 @@
+<div class="box box-info">
+  <?php
+if(isset($this->views->error)) {
+        foreach ($this->views->error as $msg) {
+            echo "<div style='color:red;'>" . $msg . "</div>"; 
+        }
+    }
+  ?>
+            <div class="box-header with-border">
+              <h3 class="box-title">Chỉnh sửa danh mục</h3>
+            </div>
+             <!-- form start -->
+            <form class="form-horizontal" method="post" action="">
+              <div class="box-body">
+
+                <div class="form-group">
+                  <label for="txt_danhmuc" class="col-sm-2 control-label" >Tên danh mục</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="txt_danhmuc" placeholder="Danh mục sách" name="txt_danhmuc" value="<?=$this->views->danhmucrow["ten_the_loai"]?>">
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label for="slx_nhomtk" class="col-sm-2 control-label">Nhóm nhân viên</label>
+
+                  <div class="col-sm-10">
+                     <select name="txt_nv" id="txt_nv" class="form-control">
+                  <option>== Chọn nhóm nhân viên ==</option>
+                 <?php
+                     if(isset($this->views->addnhomnv)){
+                      foreach ($this->views->addnhomnv as $ten_nhom) { ?>
+
+                         <option value="<?=$ten_nhom["id"]?>"><?=$ten_nhom["ho_ten"]?></option>
+
+                  <?php       
+                    }}
+                  ?>
+                </select>
+                  </div>
+
+                </div>
+                <div class="form-group">
+                  <label for="slx_nhomtk" class="col-sm-2 control-label">Nhóm tài khoản</label>
+
+                  <div class="col-sm-10">
+                     <select name="slx_nhomtk" id="slx_nhomtk" class="form-control">
+                  <option>== Chọn nhóm tài khoản ==</option>
+                 <?php
+                     if(isset($this->views->adnhomtk)){
+                      foreach ($this->views->adnhomtk as $ten_nhom) { ?>
+
+                         <option value="<?=$ten_nhom["id"]?>"><?=$ten_nhom["ten_nhom"]?></option>
+
+                  <?php       
+                    }}
+                  ?>
+                </select>
+                  </div>
+
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+       
+               <input type="submit" name="updatedm" id="updatedm" value="Sửa danh mục" style="float: right;">
+                <a href="?controller=danhsach&action=danhmucsach">Quay lại</a>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>

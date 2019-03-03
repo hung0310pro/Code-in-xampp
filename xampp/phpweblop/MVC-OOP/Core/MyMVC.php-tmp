@@ -1,0 +1,95 @@
+<?php
+class MyMVC {
+
+	public function Run() {
+		// giả gõ ?controller=admin-user, và action = rỗng
+		$controller = isset($_GET['controller'])?$_GET['controller']:'index';
+		$action     = isset($_GET['action'])?$_GET['action']:'index';
+
+		if (!$this->checkacl($controller, $action)) {
+			die("bạn chưa được cấp quyền sử dụng chức năng này");
+		}
+
+		// chuyển tham số url thành tên Class
+		$tmp_c           = str_replace('-', ' ', $controller);// admin user
+		$tmp_c           = ucwords($tmp_c);// Admin User
+		$controllerClass = str_replace(' ', '', $tmp_c).'Controller';//AdminUserController
+
+		// chuyển tham số action thành tên Class
+		$tmp_a        = str_replace('-', ' ', $action);// list san pham
+		$tmp_a        = ucwords($tmp_a);
+		$actionMethod = str_replace(' ', '', $tmp_a).'Action';
+		$actionMethod = lcfirst($actionMethod);// chuyển chữ cái đầu tiên về chữ thường, indexAction
+
+		$objController = new $controllerClass();// tạo mới đối tượng AdminUserController
+		//$objController = new $AdminUserController(); sau đó chạy cái autoload lần nữa
+
+		$objController->currentController = $controller;//admin-user,cái này và cái dưới ở trong
+		// class AdminUserController kế thừa từ class controller
+		$objController->currentAction = $action;// index
+
+		// kiểm tra tồn tại phương thức trong đối tượng
+		if (method_exists($objController, $actionMethod)) {//indexAction
+			$objController->$actionMethod();
+			//$objController->indexAction();
+
+		} else {
+			die('Action <b>'.$controllerClass.'::'.$actionMethod.'</b> not found!');
+		}
+
+		$objController->RenderView();// hàm này trong class AdminUserController, vì class AdminUserController kế thừa
+		// class controller
+
+	}
+
+	// hàm kiểm tra phân quyền
+	function checkacl($currentcontroller, $currentaction) {
+		// admin-user_index danh sách
+		// admin-user_add thêm tài khoản
+		// index_index
+		// index_login
+		// index_logout
+		// index_reg
+		$link_check        = $currentcontroller.'_'.$currentaction;
+		$arr_default_allow = array("index_index", "index_login", "index_logout", "index_reg", "index_danh-sach-san-pham", "index_chi-tiet-san-pham", "index_add-cart", "index_show-cart", "submit-cart");// mặc định cho phép
+
+		if (in_array($link_check, $arr_default_allow))// in_array kiểm tra giá trị nào đó có tồn tại trong mảng k?
+		{return true;
+		}
+
+		if (empty($_SESSION["auth"])) {
+			// chưa đăng nhập ==> chuyển về trang đăng nhập
+			header("location:".base_path."?action=login");
+			return false;
+		}
+		// đến đây thì đã đăng nhập rồi
+		if (empty($_SESSION["auth"]["permission_allow"])) {
+			// chưa load quyền trong DB lên session thì load lên
+			$id_nhom_tk = $_SESSION["auth"]["id_nhom_tai_khoan"];
+			$sql        = "select phan_quyen.*, chuc_nang.url from chuc_nang inner join phan_quyen on phan_quyen.id_chuc_nang = chuc_nang.id_chuc_nang where id_nhom_tai_khoan = $id_nhom_tk and trang_thai = 1 ";
+
+			$db = new Database();
+
+			$rescheck = mysqli_query($db->getConn(), $sql);
+			if (mysqli_errno($db->getConn()) != 0) {
+				die("Error query: ".mysqli_query($db->getConn()));
+
+				$tmp = array();
+
+				while ($row = mysqli_fetch_assoc($rescheck)) {
+					$tmp[] = $row["url"];
+				}
+
+				$_SESSION["auth"]["permission_allow"] = $tmp;
+				mysqli_free_result($rescheck);
+			}
+			if (in_array($link_check, $_SESSION["auth"]["permission_allow"])) {
+				return true;
+			} else {
+
+				return false;
+			}
+		}
+
+	}
+}

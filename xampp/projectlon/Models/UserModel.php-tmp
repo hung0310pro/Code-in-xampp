@@ -1,0 +1,211 @@
+<?php
+class UserModel extends Database {
+	public function add_row($param) {
+		$username = mysqli_real_escape_string($this->getConn(), $param["username"]);
+
+		$sql = "INSERT INTO tb_tai_khoan (username,password,email,ho_ten,dia_chi,id_nhom_tai_khoan)
+                VALUES ('{$username}',
+                '{$param["password"]}',
+                '{$param["email"]}',
+                '{$param["hoten"]}',
+                '{$param["diachi"]}',
+                '{$param["key"]}')";
+
+		return $this->Add_Query($sql);
+	}
+
+	public function add_sp_img($param) {
+		$sql = "INSERT INTO tb_sach (ten_sach,nam_xuat_ban,trong_luong,kich_thuoc,so_trang,hinh_thuc,ngon_ngu,gioi_thieu,gia_goc,gia_ban,hinh_anh,trang_thai,khuyen_mai,danh_gia,tac_gia,nha_cung_cap,nha_xuat_ban,id_nv,id_tai_khoan,so_luong,ten_sach_khong_dau)
+                VALUES ('{$param["tensach"]}','{$param["namxuatban"]}','{$param["trongluong"]}','{$param["kichthuoc"]}','{$param["sotrang"]}','{$param["hinhthuc"]}','{$param["ngonngu"]}','{$param["gioithieu"]}','{$param["giagoc"]}','{$param["giaban"]}','{$param["hinhanh"]}','{$param["trangthai"]}','{$param["khuyenmai"]}','{$param["danhgia"]}','{$param["tacgia"]}','{$param["nhacungcap"]}','{$param["nhaxuatban"]}','{$param["manhanvien"]}','{$param["mataikhoan"]}','{$param["soluong"]}','{$param["tenkhongdau"]}')";
+
+		return $this->Add_Query($sql);
+	}
+
+	public function get_listuser1() {
+		$sql = "select * from tb_tai_khoan order by id desc";
+		return $this->ExecQuerySelect($sql);
+	}
+
+	public function get_row($id) {
+		$sql = "select * from tb_tai_khoan where id = ".$id;
+		return $this->Query_Get_Row1($sql);
+	}
+
+	public function get_listuser($username1, $email1) {
+		$sql = "SELECT * FROM tb_tai_khoan WHERE username = '".$username1."' OR email = '".$email1."'";
+		return $this->Query_Get_Row1($sql);
+	}
+
+	public function get_row2($table, $id) {
+		$sql = "select * from ".$table." where id = ".$id;
+		return $this->Query_Get_Row1($sql);
+	}
+
+	public function check_user($username, $password) {
+		$sql = "SELECT * FROM tb_tai_khoan WHERE username = '".$username."'
+         AND password = '".md5(site_key.$password)."'";
+		return $this->Query_Get_Row1($sql);
+	}
+
+	public function checkgiohang($email, $dienthoai) {
+		$email1     = mysqli_real_escape_string($this->getConn(), $email);
+		$dienthoai1 = mysqli_real_escape_string($this->getConn(), $dienthoai);
+		$sql        = "SELECT * FROM tb_khach_hang WHERE email = '".$email1."' AND dien_thoai = '".$dienthoai1."'";
+		return $this->Query_Get_Row1($sql);
+	}
+
+	public function delete_row($id) {
+		$sql = "delete from tb_tai_khoan where id = $id";
+		return $this->Delete_Query($sql);
+	}
+
+	public function delete_rowsp($id) {
+		$sql = "delete from tb_sach where id = ".$id;
+		return $this->Delete_Query($sql);
+	}
+
+	public function delete_row1($table, $id) {
+		$sql = "delete from ".$table." where id = ".$id;
+		return $this->Delete_Query($sql);
+	}
+
+	public function list_nhom_tk() {
+		$sql = "select * from tb_nhom_tai_khoan";
+		return $this->ExecQuerySelect($sql);
+	}
+
+	public function list_nv() {
+		$sql = "select * from tb_nhan_vien";
+		return $this->ExecQuerySelect($sql);
+	}
+
+	public function add_nv($param) {
+		$sql = "INSERT INTO tb_nhan_vien (ho_ten,ngay_sinh,gioi_tinh,dia_chi,dien_thoai,email,id_nhom_tai_khoan)
+                VALUES ('{$param["hoten"]}','{$param["ngaysinh"]}','{$param["gioitinh"]}','{$param["diachi"]}','{$param["email"]}','{$param["diachi"]}','{$param["key"]}')";
+
+		return $this->Add_Query($sql);
+	}
+
+	public function add_dm($param) {
+		$sql = "INSERT INTO tb_theloai (ten_the_loai,id_nhom_tai_khoan,id_nv)
+                VALUES ('{$param["danhmuc"]}','{$param["key"]}','{$param["key1"]}')";
+
+		return $this->Add_Query($sql);
+	}
+
+	public function update_nv($param, $id) {
+		$sql = "UPDATE tb_nhan_vien SET ho_ten = '{$param["hoten"]}',
+                ngay_sinh = '{$param["ngaysinh"]}',gioi_tinh = '{$param["gioitinh"]}',dia_chi = '{$param["diachi"]}',dien_thoai = '{$param["dienthoai"]}',email = '{$param["email"]}',id_nhom_tai_khoan = '{$param["key"]}'
+                WHERE id = " .$id;
+
+		return $this->ExcQuery($sql);
+	}
+
+	public function update_dm($param, $id) {
+		$sql = "UPDATE tb_theloai SET ten_the_loai = '{$param["danhmuc"]}',
+                id_nhom_tai_khoan = '{$param["key"]}',id_nv = '{$param["key1"]}' WHERE id = " .$id;
+		return $this->ExcQuery($sql);
+	}
+
+	public function list_tk() {
+		$sql = "select * from tb_tai_khoan";
+		return $this->ExecQuerySelect($sql);
+	}
+
+	public function update_row($param, $id) {
+
+		$sql = "UPDATE tb_tai_khoan SET username = '{$param["username"]}',
+                email = '{$param["email"]}',ho_ten = '{$param["hoten"]}',dia_chi = '{$param["diachi"]}',password = '{$param["password"]}',id_nhom_tai_khoan = '{$param["key"]}'
+                WHERE id = " .$id;
+
+		return $this->ExcQuery($sql);
+	}
+
+	public function update_sp($param, $id) {
+		$sql = "UPDATE tb_sach SET ten_sach = '{$param["tensach"]}',
+                nam_xuat_ban = '{$param["namxuatban"]}',trong_luong = '{$param["trongluong"]}',kich_thuoc = '{$param["kichthuoc"]}',so_trang = '{$param["sotrang"]}',hinh_thuc = '{$param["hinhthuc"]}',ngon_ngu = '{$param["ngonngu"]}',gioi_thieu = '{$param["gioithieu"]}',gia_goc = '{$param["giagoc"]}',gia_ban = '{$param["giaban"]}',trang_thai = '{$param["trangthai"]}',khuyen_mai = '{$param["khuyenmai"]}',danh_gia = '{$param["danhgia"]}',tac_gia = '{$param["tacgia"]}',nha_cung_cap = '{$param["nhacungcap"]}',nha_xuat_ban = '{$param["nhaxuatban"]}',id_nv = '{$param["manhanvien"]}',id_tai_khoan = '{$param["mataikhoan"]}',so_luong = '{$param["soluong"]}',ten_sach_khong_dau = '{$param["tenkhongdau"]}' WHERE id = " .$id;
+		return $this->ExcQuery($sql);
+	}
+
+	public function update_sp_img($param, $id) {
+		$sql = "UPDATE tb_sach SET ten_sach = '{$param["tensach"]}',
+                nam_xuat_ban = '{$param["namxuatban"]}',trong_luong = '{$param["trongluong"]}',kich_thuoc = '{$param["kichthuoc"]}',so_trang = '{$param["sotrang"]}',hinh_thuc = '{$param["hinhthuc"]}',ngon_ngu = '{$param["ngonngu"]}',gioi_thieu = '{$param["gioithieu"]}',gia_goc = '{$param["giagoc"]}',gia_ban = '{$param["giaban"]}',hinh_anh = '{$param["hinhanhmoi"]}',trang_thai = '{$param["trangthai"]}',khuyen_mai = '{$param["khuyenmai"]}',danh_gia = '{$param["danhgia"]}',tac_gia = '{$param["tacgia"]}',nha_cung_cap = '{$param["nhacungcap"]}',nha_xuat_ban = '{$param["nhaxuatban"]}',id_nv = '{$param["manhanvien"]}',id_tai_khoan = '{$param["mataikhoan"]}',so_luong = '{$param["soluong"]}',ten_sach_khong_dau = '{$param["tenkhongdau"]}' WHERE id = " .$id;
+		return $this->ExcQuery($sql);
+	}
+
+	public function get_listsp() {
+		$sql = "SELECT * FROM tb_sach";
+		return $this->ExecQuerySelect($sql);
+	}
+
+	public function list_dm($table) {
+		$sql = "SELECT * FROM ".$table;
+		return $this->ExecQuerySelect($sql);
+	}
+
+	public function get_rowsp($id) {
+		$sql = "SELECT * FROM tb_sach WHERE id = ".$id;
+		return $this->Query_Get_Row1($sql);
+	}
+
+	public function selectcount($table) {
+		$sql = "SELECT count(id) as total FROM ".$table;
+		return $this->Query_Get_Row1($sql);
+	}
+
+	public function selectlimit($table, $start, $limit) {
+		$sql = "SELECT * FROM $table order by id desc LIMIT $start, $limit";
+		return $this->ExecQuerySelect($sql);
+	}
+	// phần search cho danh sách
+	public function selecttk($username, $email) {
+		$where = "";
+		if (empty($username) && !empty($email)) {
+			$where .= " and email like '%$email%'";
+		} else if (empty($email) && !empty($username)) {
+			$where .= " and username like '%$username%'";
+		} else if (!empty($email) && !empty($username)) {
+			$where .= " and username like '%$username%' and email like '%$email%'";
+		}
+		$sql = "select * from tb_tai_khoan where 0 = 0 ".$where;
+		return $this->ExecQuerySelect($sql);
+
+	}
+
+	public function selectnv($hoten, $email) {
+		$where = "";
+		if (empty($hoten) && !empty($email)) {
+			$where .= " and email like '%$email%'";
+		} else if (empty($email) && !empty($hoten)) {
+			$where .= " and ho_ten like '%$hoten%'";
+		} else if (!empty($email) && !empty($hoten)) {
+			$where .= " and ho_ten like '%$hoten%' and email like '%$email%'";
+		}
+		$sql = "select * from tb_nhan_vien where 0 = 0 ".$where;
+		return $this->ExecQuerySelect($sql);
+	}
+
+	public function selecttg($tensach, $tacgia) {
+		$where = "";
+		if (empty($tensach) && !empty($tacgia)) {
+			$where .= " and tac_gia like '%$tacgia%'";
+		} else if (empty($tacgia) && !empty($tensach)) {
+			$where .= " and ten_sach like '%$tensach%'";
+		} else if (!empty($tacgia) && !empty($tensach)) {
+			$where .= " and ten_sach like '%$tensach%' and tac_gia like '%$tacgia%'";
+		}
+		$sql = "select * from tb_sach where 0 = 0 ".$where;
+		return $this->ExecQuerySelect($sql);
+	}
+
+	public function selectdm($tendanhmuc) {
+		$where = "";
+		if (empty($tendanhmuc)) {
+			$where .= "";
+		} else {
+			$where .= " and ten_the_loai like '%$tendanhmuc%'";
+		}
+		$sql = "select * from tb_theloai where 0 = 0 ".$where;
+		return $this->ExecQuerySelect($sql);
+	}
+}

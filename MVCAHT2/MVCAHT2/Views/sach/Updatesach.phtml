@@ -1,0 +1,53 @@
+<?php
+if (isset($_SESSION['errorudsach'])) {
+	?>
+    <div class="alert alert-danger alert-dismissible">
+		<?php
+		foreach ($_SESSION['errorudsach'] as $value) {
+			?>
+            <p style="color: white;font-size: 17px;">+ <?= $value ?></p>
+			<?php
+		}
+		?>
+    </div>
+	<?php
+	unset($_SESSION['errorudsach']);
+}
+
+
+?>
+<div class="box box-solid box-info" style="border: 1px solid #00a65a;">
+    <div class="box-header with-border" style="background: #00a65a;">
+        <h3 class="box-title" style="color: white;">Chỉnh sửa thông tin sách</h3>
+        <div class="box-tools pull-right">
+        </div>  <!-- /.box-tools -->
+    </div> <!-- /.box-header -->
+    <div class="box-body">
+        <div class="col-md-12">
+            <form method="POST">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <label>Namebook</label>
+                        <input type="text" name="tensach" class="form-control"
+                               value="<?= $this->getBook()['0']->namebook ?>">
+                    </div>
+                    <div class="col-md-3">
+                        <label>Author</label>
+                        <input type="text" name="tacgia" class="form-control"
+                               value="<?= $this->getBook()['0']->author ?>">
+                    </div>
+                    <div class="col-md-3">
+                        <label>P_year</label>
+                        <input type="text" name="namsx" class="form-control"
+                               value="<?= $this->getBook()['0']->p_year ?>">
+                    </div>
+                    <div class="col-md-3" style="margin-top: 23px;">
+                        <button name="suasach" class="btn btn-primary" type="submit">Update book</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div> <!-- /.box-body -->
+    <div class="box-footer">
+    </div><!-- /.box-body -->
+</div><!-- /.box -->

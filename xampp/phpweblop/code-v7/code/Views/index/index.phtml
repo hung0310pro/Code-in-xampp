@@ -1,0 +1,57 @@
+<?php
+if(!empty($_SESSION['msg']))
+  {
+    foreach($_SESSION['msg'] as $msg ){
+      echo '<p style="color:blue">'.$msg.'</p>';
+    }
+  }
+
+
+if(!is_array($dataView['ds_sp'])) {
+  echo $dataView['ds_sp'];
+  return;
+} 
+
+foreach($dataView['ds_sp'] as $k=>$row){
+    $image_url = base_path.'/' . $row['images'];
+
+    $link_chitiet = '?action=chi-tiet-san-pham&id='. $row['id'];
+
+    $link_ten = "<a href='$link_chitiet'>{$row['ten_san_pham']}</a>";
+
+    $link_mua = "?action=add-cart&id=".$row['id'];
+    if($k %2 ==0){
+      echo '<div class="leftbox">
+              <h3>'. $link_ten.'</h3>
+              <img src="'.$image_url.'" width="93" height="95" alt="photo 1" class="left" />
+              <p><b>Giá:</b> <b>'.number_format($row['gia_ban']).'đ</b></p>
+              <p>'.$row['mota_tomtat'].'</p>
+              <p class="readmore"><a href="'.$link_mua.'">MUA <b>NGAY</b></a></p>
+              <div class="clear"></div>
+          </div><!-- end .leftbox -->';
+    } else{
+        echo '<div class="rightbox">
+                <h3>'. $link_ten.'</h3>
+                <img src="'.$image_url.'" width="107" height="91" alt="photo 4" class="left" />
+                <p><b>Giá:</b> <b>'.number_format($row['gia_ban']).'đ</b></p>
+              <p>'.$row['mota_tomtat'].'</p>
+                <p class="readmore"><a href="'.$link_mua.'">MUA <b>NGAY</b></a></p>
+                <div class="clear"></div>
+            </div><!-- end .rightbox -->';
+
+    }
+
+    if($k %2 !=0 )
+      echo '<div class="clear br"></div>'; 
+
+}
+
+
+?>
+
+
+
+
+
+
+                  

@@ -1,0 +1,127 @@
+
+   <div class="box">
+          
+            <!-- /.box-header -->
+            <div class="box-body">
+               <a href="?controller=danhsach&action=themnhanvien" style="font-size: 20px;">+Thêm nhân 
+               viên</a>
+
+                 <div>
+                <form method="post" action="">
+                 Họ tên: <input type="text" name="hoten" placeholder="Tìm với họ tên" size="30px;">
+                 Email: <input type="text" name="email" placeholder="Tìm với email"  size="30px;">
+                 <button name="timkiem" type="submit" class="btn btn-danger btn-sm">Tìm kiếm</button>
+               </form>
+               </div>
+
+            <?php
+              if(isset($_SESSION["themnv"])){
+                echo "<div style='color:green;font-size:20px;'>" .$_SESSION["themnv"]. "</div>"; 
+                unset($_SESSION["themnv"]);
+              }
+
+               if(isset($_SESSION["suanv"])){
+                echo "<div style='color:green;font-size:20px;'>" .$_SESSION["suanv"]. "</div>"; 
+                unset($_SESSION["suanv"]);
+              }
+            ?>
+               <div></div>
+              <table id="example1" class="table table-bordered table-striped">
+              
+                <tr>
+                  <th>ID</th>
+                  <th>Họ tên</th>
+                  <th>Ngày sinh</th>
+                  <th>Giới tính</th>
+                  <th>Địa chỉ</th>
+                  <th>Điện thoại</th>
+                  <th>Email</th>
+                  <th>Chỉnh sửa</th>
+                  <th>Xóa</th>
+                </tr>
+              
+          <?php
+          if(isset($_POST["timkiem"])){
+             foreach ($this->views_nv as $value1) {
+            ?>
+             <tr>
+                  <td><?= $value1["id"] ?></td>
+                  <td><?= $value1["ho_ten"] ?></td>
+                  <td><?= $value1["ngay_sinh"] ?></td>
+                  <td><?= $value1["gioi_tinh"] ?></td>
+                  <td><?= $value1["dia_chi"] ?></td>
+                  <td><?= $value1["dien_thoai"] ?></td>
+                  <td><?= $value1["email"] ?></td>             
+                  <td><a href="?controller=danhsach&action=suanhanvien&id=<?=$value1["id"]?>">Chỉnh sửa</a></td>
+                  <td><a href="?controller=danhsach&action=deletenv&id=<?=$value1["id"]?>" onclick="return xoa()">Xóa</a></td>
+                </tr>
+          <?php
+          }}
+          else{
+          foreach($this->views->list_taikhoan_nv as $value){ 
+            ?>
+                <tr>
+                  <td><?= $value["id"] ?></td>
+                  <td><?= $value["ho_ten"] ?></td>
+                  <td><?= $value["ngay_sinh"] ?></td>
+                  <td><?= $value["gioi_tinh"] ?></td>
+                  <td><?= $value["dia_chi"] ?></td>
+                  <td><?= $value["dien_thoai"] ?></td>
+                  <td><?= $value["email"] ?></td>             
+                  <td><a href="?controller=danhsach&action=suanhanvien&id=<?=$value["id"]?>">Chỉnh sửa</a></td>
+                  <td><a href="?controller=danhsach&action=deletenv&id=<?=$value["id"]?>" onclick="return xoa()">Xóa</a></td>
+                </tr>
+          <?php }} ?>
+               
+               <tr>
+                  <th>ID</th>
+                  <th>Họ tên</th>
+                  <th>Ngày sinh</th>
+                  <th>Giới tính</th>
+                  <th>Địa chỉ</th>
+                  <th>Điện thoại</th>
+                  <th>Email</th>
+                  <th>Chỉnh sửa</th>
+                  <th>Xóa</th>
+                </tr>
+                
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
+             <div class="pagination" style="float: right;margin-right: -124px;width: 300px;">
+           <?php 
+            // PHẦN HIỂN THỊ PHÂN TRANG
+            // BƯỚC 7: HIỂN THỊ PHÂN TRANG
+ 
+            // nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
+            if ($this->views->current_pages > 1 && $this->views->total_pages > 1){
+                echo '<a href="?controller=danhsach&action=danhsachnhanvien&page='.($this->views->current_pages-1).'" style="font-size:16px;">Prev | </a>';
+            }
+ 
+            // Lặp khoảng giữa
+            for ($i = 1; $i <= $this->views->total_pages; $i++){
+                // Nếu là trang hiện tại thì hiển thị thẻ span
+                // ngược lại hiển thị thẻ a
+                if ($i == $this->views->current_pages){
+                    echo '<span style="font-size:16px;">'.$i.' |</span>  ';
+                }
+                else{
+                    echo '<a href="?controller=danhsach&action=danhsachnhanvien&page='.$i.'" style="font-size:16px;">'.$i.' |</a> ';
+                }
+            }
+ 
+            // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
+            if ($this->views->current_pages < $this->views->total_pages && $this->views->total_pages > 1){
+                echo '<a href="?controller=danhsach&action=danhsachnhanvien&page='.($this->views->current_pages+1).'" style="font-size:16px;">Next</a> ';
+            }
+           ?>
+        </div>
+
+
+
+
+
+
+

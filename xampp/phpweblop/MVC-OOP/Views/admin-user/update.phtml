@@ -1,0 +1,73 @@
+<?php
+echo '<pre>'.__FILE__.'::'.__METHOD__.'('.__LINE__.')';
+    print_r($_POST);
+echo '</pre>';
+
+?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>update</title>
+</head>
+<body>
+
+<?php
+
+//CHÚ Ý <form action="?controller=admin-user&action=update&id=<?php echo $id;>
+/*if(isset($this->view->error)) {
+    foreach ($this->view->error as $msg) {
+        echo "<div>" . $msg . "</div>"; // bên add của adminusercontroller
+    }
+}
+if(isset($this->view->success)){
+    foreach ($this->view->success as $msg) {
+        echo "<div>" . $msg . "</div>";
+    }
+}*/
+
+var_dump($this->view->success);
+
+?>
+<form action="" method="post">
+    <table>
+        <tr>
+            <th>Username</th>
+            <td><input type="text" name="username" value="<?php echo $this->view->row['username']; ?>"></td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td><input type="text" name="email" value="<?php echo $this->view->row['email']; ?>"></td>
+        </tr>
+        <tr>
+            <th>Họ tên</th>
+            <td><input type="text" name="ho_ten" value="<?php echo $this->view->row['ho_ten']; ?>"></td>
+        </tr>
+        <tr>
+            <th>Ngày sinh</th>
+            <td><input type="text" name="ngay_sinh" value="<?php echo $this->view->row['ngay_sinh']; ?>"></td>
+        </tr>
+        <tr>
+            <th>Giới tính</th>
+            <td><input type="text" name="gioi_tinh" value="<?php echo $this->view->row['gioi_tinh']; ?>"></td>
+        </tr>
+        <tr>
+            <th>Điện thoại</th>
+            <td><input type="text" name="dien_thoai" value="<?php echo $this->view->row['dien_thoai']; ?>"></td>
+        </tr>
+        <tr>
+            <th>Địa chỉ</th>
+            <td><input type="text" name="dia_chi" value="<?php echo $this->view->row['dia_chi']; ?>"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update" name="upnow"></td>
+        </tr>
+    </table>
+</form>
+<a href="?controller=admin-user&action=index">Quay lại</a>
+</body>
+</html>

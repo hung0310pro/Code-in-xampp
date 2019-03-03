@@ -1,0 +1,369 @@
+<?php
+class TrangphuSanphamController extends Controller {
+	public function chitietsanphamAction() {
+		$this->views->error = array();
+
+		$id                        = $_GET["id"];
+		$objModels                 = new SanphamModel();
+		$get_sach                  = $objModels->load_get_row("tb_sach", $id);
+		$this->views->get_row_sach = $get_sach;
+
+		$get_listsach            = $objModels->loadlistlimit("tb_sach");
+		$this->views->get_sachlq = $get_listsach;
+
+		$get_cmt               = $objModels->load_get_rown($id);
+		$this->views->binhluan = $get_cmt;
+
+		if (isset($_POST["submit"])) {
+			$error    = array();
+			$id_sach  = $id;
+			$tieude   = isset($_POST["tieude"])?trim($_POST["tieude"]):"";
+			$comment  = isset($_POST["binhluan"])?trim($_POST["binhluan"]):"";
+			$username = isset($_POST["username"])?trim($_POST["username"]):"";
+			$time     = date('Y/m/d - H:i:s');
+
+			$bieuthuc_hoten = '/^[ A-Za-z0-9òóọỏõơờớợởỡôồốộổỗÒÓỌỎÕƠỜỚỢỞỠÔỐỔỘỒỖàáạảãăằắặẳẵâầấậẩẫÀÁẠẢÃĂẰẮẶẲẴÂẤẦẬẨẪềếệểêễéèẻẽẹỂẾỆỂÊỄÉÈẺẼẸừứựửữùúụủũỪỨỰỬƯỮÙÚỤỦŨìíịỉĩÌÍỊỈĨỳýỵỷỹỲÝỴỶỸđĐ]{3,100}$/';
+			if (!preg_match($bieuthuc_hoten, $tieude)) {
+				// họ tên không hợp lệ
+				$error[] = "Lỗi: Tiêu đề không hợp lệ. Cần nhập chuỗi tiếng Việt từ 3 đến 50 ký tự";
+			}
+			if (empty($comment)) {
+				$error[] = "Lỗi: Bạn cần nhập bình luận của mình";
+			}
+			if (count($error) == 0) {
+				$datasave["tieude"]     = $tieude;
+				$datasave["comment"]    = $comment;
+				$datasave["idsach"]     = $id_sach;
+				$datasave["username"]   = $username;
+				$datasave["thoigianbl"] = $time;
+
+				$addcmt = $objModels->insert_cmt($datasave);
+
+				if (count($addcmt) > 0) {
+					$_SESSION["cmt"] = "Bình luận của bạn đã được gửi đi và phải đợi kiểm duyệt";
+					/*  $tieude = "";
+				$comment = "";*/
+				}
+			} else {
+				$this->views->error = $error;
+
+			}
+		}
+	}
+
+	public function sanphamdanhmucAction() {
+
+		$ok1        = $_GET["id"];
+		$objModels3 = new SanphamModel();
+		/* $get_sachdm = $objModels3->loadlistsach_theloai($id);*/
+		$get_danhmuc         = $objModels3->load_get_row("tb_theloai", $ok1);
+		$this->views->get_dm = $get_danhmuc;
+		/* $this->views->get_sachdm = $get_sachdm;*/
+
+		$ok = array();
+
+		$ok = $objModels3->loadlistsach_theloaihihi($ok1);
+
+		$total_records              = $ok["total"];
+		$current_page               = isset($_GET['page'])?$_GET['page']:1;
+		$this->views->current_pages = $current_page;
+		$limit                      = 2;
+		$total_page                 = ceil($total_records/$limit);
+		$this->views->total_pages   = $total_page;
+		if ($this->views->current_pages > $this->views->total_pages) {
+			$this->views->current_pages = $this->views->total_pages;
+		} else if ($this->views->current_pages < 1) {
+			$this->views->current_pages = 1;
+		}
+		$start                   = ($this->views->current_pages-1)*$limit;
+		$get_sachdm              = $objModels3->loadlistsach_theloaihaha($ok1, $start, $limit);
+		$this->views->get_sachdm = $get_sachdm;
+		$this->views->id         = $ok1;
+	}
+
+	public function searchAction() {
+		if (isset($_POST["search"])) {
+			$search                   = $_POST["search"];
+			$search1                  = trim($search);
+			$search2                  = addslashes($search1);
+			$objModels4               = new SanphamModel();
+			$search_khongdau          = $objModels4->SpxRemoveCircuflex($search2);
+			$search_khongdau          = str_replace("-", " ", $search_khongdau);
+			$listsp_search            = $objModels4->search($search_khongdau);
+			$this->views->sach_search = $listsp_search;
+			/*
+		$ok = $objModels4->search1($search_khongdau);
+
+		$total_records = $ok["total"];
+		$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+		$this->views->current_pages = $current_page;
+		$limit = 1;
+		$total_page = ceil($total_records / $limit);
+		$this->views->total_pages = $total_page;
+		if ($this->views->current_pages > $this->views->total_pages){
+		$this->views->current_pages = $this->views->total_pages;
+		}
+		else if ($this->views->current_pages < 1){
+		$this->views->current_pages = 1;
+		}
+		$start = ($this->views->current_pages - 1) * $limit;
+		$listsp_search = $objModels4->search($search_khongdau,$start,$limit);
+		$this->views->sach_search = $listsp_search;*/
+		}
+	}
+
+	public function thanhtoanAction() {
+		$objModel2 = new SanphamModel();
+		$error     = array();
+		if (empty($_SESSION["giohang"])) {
+			$error[] = "Bạn chưa mua sản phẩm nào!";
+		}
+		// sau khi tồn tại $_SESSION["giohang"] = array(id_sach=>soluong);
+		if (isset($_POST["cngiohang"])) {
+			foreach ($_POST as $key => $soluong) {// chính là name và value của input type = "number"
+				if (strpos($key, 'sl_') !== false) {
+					$id_sach = str_replace("sl_", "", $key);// = $id_sach bên input type = "number"
+					if (isset($_SESSION["giohang"][$id_sach])) {
+						if ($soluong <= 0) {
+							unset($_SESSION["giohang"][$id_sach]);
+						} elseif ($soluong > 50) {
+							$error[] = "Bạn chỉ được mua tối đa 50 sản phẩm!";
+						} else {
+							//gán        $_SESSION["giohang"][$id_sach] = $soluong; ($soluong = value bên kia post sang)
+							//hơn nữa cái này ý nghĩa là gì, ý nghĩa là $_SESSION["giohang"]["1"] = 2;
+							//$_SESSION["giohang"]["2"] = 3; khi đó
+							$_SESSION["giohang"][$id_sach] = $soluong;
+						}
+						//  $_SESSION["giohang"] = ("1" => "2","2"=>3); rồi sang trang thanh toán in ra
+					}
+				}
+			}
+		}
+
+		if (isset($_SESSION["giohang"])) {
+
+			$this->views->id_sach       = array_keys($_SESSION["giohang"]);
+			$this->views->chuoi_id_sach = implode(",", $this->views->id_sach);
+			// đưa cả mảng này thành 1 chuỗi luôn
+			// // đây là đoạn mã sp đấy như bài 7 của 2school ("123","435")..  // hàm array_keys lấy khóa của mảng như mảng này lấy mã của sản phẩm
+			$this->views->listsp_giohang = $objModel2->listhome(array("in_list_thanhtoan" => $this->views->chuoi_id_sach));
+			// cái này truyền sang sanphammodel.php;
+
+			if (isset($_POST["thanhtoan"])) {
+				// bảng khách hàng
+				$hoten          = isset($_POST["hoten"])?trim($_POST["hoten"]):"";
+				$email          = isset($_POST["email"])?trim($_POST["email"]):"";
+				$diachi         = isset($_POST["diachi"])?trim($_POST["diachi"]):"";
+				$dienthoai      = isset($_POST["dienthoai"])?trim($_POST["dienthoai"]):"";
+				$partten        = "/^[A-Za-z0-9_\.]{6,32}@([a-zA-Z0-9]{2,12})(\.[a-zA-Z]{2,12})+$/";
+				$dienthoaicheck = '/^(84|0)(1\d{9}|9\d{8})$/';
+				$bieuthuc_hoten = '/^[ A-Za-z0-9òóọỏõơờớợởỡôồốộổỗÒÓỌỎÕƠỜỚỢỞỠÔỐỔỘỒỖàáạảãăằắặẳẵâầấậẩẫÀÁẠẢÃĂẰẮẶẲẴÂẤẦẬẨẪềếệểêễéèẻẽẹỂẾỆỂÊỄÉÈẺẼẸừứựửữùúụủũỪỨỰỬƯỮÙÚỤỦŨìíịỉĩÌÍỊỈĨỳýỵỷỹỲÝỴỶỸđĐ]{3,100}$/';
+				if (!preg_match($bieuthuc_hoten, $hoten)) {
+					// họ tên không hợp lệ
+					$error[] = "Lỗi: Họ tên không hợp lệ. Cần nhập chuỗi tiếng Việt từ 3 đến 50 ký tự";
+				}
+
+				if (!preg_match($partten, $email)) {
+					$error[] = "Lỗi: email không đúng định dạng";
+				}
+
+				if (!preg_match($dienthoaicheck, $dienthoai)) {
+					$error[] = "Lỗi: điện thoại không đúng định dạng";
+				}
+				$idnv = mt_rand(1, 3);
+				$idtk = mt_rand(1, 5);
+
+				if (count($error) == 0) {
+					$datasave["hoten"]     = $hoten;
+					$datasave["email"]     = $email;
+					$datasave["diachi"]    = $diachi;
+					$datasave["dienthoai"] = $dienthoai;
+					$add                   = $objModel2->insert_khachhang($datasave);
+					// bảng đơn hàng
+					// lấy cái khóa chính từ bảng khách hàng, chính là lastinsert ID ấy
+					$datasave1["idkhach"]           = $add;
+					$datasave1["ngaymua"]           = date("Y-m-d");
+					$datasave1["trangthai"]         = 1;
+					$datasave1["diachi"]            = $diachi;
+					$datasave1["nhanvien"]          = $idnv;
+					$datasave1["taikhoan"]          = $idtk;
+					$datasave1["hinhthucthanhtoan"] = $_POST["payments"];
+					$add1                           = $objModel2->insert_donhang($datasave1);
+
+					// bảng chi tiết đơn hàng
+
+					foreach ($_SESSION["giohang"] as $id_sach      => $soluong) {
+						foreach ($this->views->listsp_giohang as $key => $value) {
+							if ($value["id"] == $id_sach) {
+								$sach                   = $objModel2->load_get_row("tb_sach", $value["id"]);
+								$datasave2["soluong"]   = $soluong;
+								$datasave2["iddonhang"] = $add1;
+								$datasave2["idsach"]    = $value["id"];
+								$datasave2["giaban"]    = $value["gia_ban"]*$soluong;
+								$datasave2["trietkhau"] = ceil((($value["gia_goc"]-$value["gia_ban"])/$value["gia_goc"])*100);
+								$datasave2["tensach"]   = $sach["ten_sach"];
+								$datasave2["hinhanh"]   = $sach["hinh_anh"];
+								$add2                   = $objModel2->insert_ctdh($datasave2);
+							}
+						}
+					}
+
+					if (!is_numeric($add) || !is_numeric($add1) || !is_numeric($add2)) {
+						$this->views->error[] = "Đã xảy ra lỗi";
+					} else {
+						unset($_SESSION["giohang"]);
+						$this->views->success[] = "Bạn đã đăng ký mua sản phẩm thành công";
+
+					}
+
+				}
+
+			}
+			$this->views->error1 = $error;
+		}
+	}
+
+	public function deletesanphamAction() {
+		$id_sach = intval($_GET["id"]);
+		if (isset($_SESSION["giohang"][$id_sach])) {
+			unset($_SESSION["giohang"][$id_sach]);
+		}
+		header("location:?controller=trangphu-sanpham&action=thanhtoan");
+	}
+
+	public function logoutAction() {
+		session_destroy();
+		header("location:?controller=index");
+		exit();
+	}
+
+	public function donhangAction() {
+		$objModel5                  = new SanphamModel();
+		$ok                         = $objModel5->donhang1();
+		$total_records              = $ok["total"];
+		$current_page               = isset($_GET['page'])?$_GET['page']:1;
+		$this->views->current_pages = $current_page;
+		$limit                      = 5;
+		$total_page                 = ceil($total_records/$limit);
+		$this->views->total_pages   = $total_page;
+		if ($this->views->current_pages > $this->views->total_pages) {
+			$this->views->current_pages = $this->views->total_pages;
+		} else if ($this->views->current_pages < 1) {
+			$this->views->current_pages = 1;
+		}
+		$start                = ($this->views->current_pages-1)*$limit;
+		$list_donhang         = $objModel5->donhang($start, $limit);
+		$this->views->donhang = $list_donhang;
+		if (isset($_SESSION["level"])) {
+			if ($_SESSION["level"] == 3) {
+				header("location:?controller=index");
+			}
+		} else if (!isset($_SESSION["level"])) {
+			header("location:?controller=index");
+		}
+	}
+
+	public function chinhdonAction() {
+		$this->views->error   = array();
+		$this->views->success = array();
+		$id                   = $_GET["id"];
+		$objModel6            = new SanphamModel();
+		$donhang              = $objModel6->load_get_row("tb_don_hang", $id);
+		$this->views->donhang = $donhang;
+		if (isset($_POST["suatt"])) {
+			$trangthai             = $_POST["chinhdon"];
+			$datasave["trangthai"] = $trangthai;
+			$update_giaohang       = $objModel6->updatechinhdonhang($datasave, $id);
+			if (isset($update_giaohang)) {
+
+				$_SESSION["chinhsua"] = "bạn đã duyệt đơn hàng thành công";
+				header("location:?controller=trangphu-sanpham&action=donhang");
+			}
+		}
+		if (isset($_SESSION["level"])) {
+			if ($_SESSION["level"] == 3) {
+				header("location:?controller=index");
+			}
+		} else if (!isset($_SESSION["level"])) {
+			header("location:?controller=index");
+		}
+	}
+
+	public function danhsachcmtAction() {
+		$objmodel9 = new SanphamModel();
+		/*  $list_cmt = $objmodel9->loadlist("tb_binh_luan");
+		$this->views->list_comment = $list_cmt;*/
+		$row = array();
+
+		$row = $objmodel9->selectcount("tb_binh_luan");
+
+		$total_records             = $row["total"];
+		$this->views->total_record = $total_records;
+
+		$current_page               = isset($_GET['page'])?$_GET['page']:1;
+		$this->views->current_pages = $current_page;
+		$limit                      = 3;
+		$total_page                 = ceil($total_records/$limit);
+		$this->views->total_pages   = $total_page;
+		if ($this->views->current_pages > $this->views->total_pages) {
+			$this->views->current_pages = $this->views->total_pages;
+		} else if ($this->views->current_pages < 1) {
+			$this->views->current_pages = 1;
+		}
+		$start                     = ($this->views->current_pages-1)*$limit;
+		$list_cmt                  = $objmodel9->selectlimit("tb_binh_luan", $start, $limit);
+		$this->views->list_comment = $list_cmt;
+		if (isset($_SESSION["level"])) {
+			if ($_SESSION["level"] == 3) {
+				header("location:?controller=index");
+			}
+		} else if (!isset($_SESSION["level"])) {
+			header("location:?controller=index");
+		}
+	}
+
+	public function duyetcmtAction() {
+		$this->views->error   = array();
+		$this->views->success = array();
+		$id                   = $_GET["id"];
+		$objModel10           = new SanphamModel();
+		$cmt                  = $objModel10->load_get_row("tb_binh_luan", $id);
+		$this->views->cmt     = $cmt;
+		if (isset($_POST["duyet"])) {
+			$trangthai             = $_POST["trangthai"];
+			$datasave["trangthai"] = $trangthai;
+			$update_duyetcmt       = $objModel10->updatecmt($datasave, $id);
+			if (isset($update_duyetcmt)) {
+
+				$_SESSION["duyetcmt"] = "bạn đã duyệt comment thành công";
+				header("location:?controller=trangphu-sanpham&action=danhsachcmt");
+			}
+		}
+		if (isset($_SESSION["level"])) {
+			if ($_SESSION["level"] == 3) {
+				header("location:?controller=index");
+			}
+		} else if (!isset($_SESSION["level"])) {
+			header("location:?controller=index");
+		}
+	}
+
+	public function xemgiohangAction() {
+		$objmodel11 = new SanphamModel();
+		if (isset($_SESSION["email"]) && isset($_SESSION["dienthoai"])) {
+			$email                   = $_SESSION["email"];
+			$dienthoai               = $_SESSION["dienthoai"];
+			$giohang                 = $objmodel11->laygiohang($email, $dienthoai);
+			$this->views->xemgiohang = $giohang;
+		} else {
+
+			header("location:?controller=index");
+		}
+	}
+
+	public function deletegiohangAction() {
+		session_destroy();
+		header("location:?controller=index");
+	}
+
+}

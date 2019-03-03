@@ -1,0 +1,114 @@
+<?php
+if (isset($_SESSION['updatesach'])) {
+	?>
+    <div class="alert alert-success alert-dismissible">
+        <p style="color: white;font-size: 17px;"><?= $_SESSION['updatesach'] ?></p>
+    </div>
+	<?php
+	unset($_SESSION['updatesach']);
+}
+
+if (isset($_SESSION['deletebook'])) {
+	?>
+    <div class="alert alert-success alert-dismissible">
+        <p style="color: white;font-size: 17px;"><?= $_SESSION['deletebook'] ?></p>
+    </div>
+	<?php
+	unset($_SESSION['deletebook']);
+}
+
+if (isset($_SESSION['erroradsach'])) {
+	?>
+    <div class="alert alert-danger alert-dismissible">
+		<?php
+		foreach ($_SESSION['erroradsach'] as $value) {
+			?>
+            <p style="color: white;font-size: 17px;">+ <?= $value ?></p>
+			<?php
+		}
+		?>
+    </div>
+	<?php
+	unset($_SESSION['erroradsach']);
+}
+
+?>
+<div class="box box-solid box-info" style="border: 1px solid #00a65a;">
+    <div class="box-header with-border" style="background: #00a65a;">
+        <h3 class="box-title" style="color: white;">Thông tin sách</h3>
+        <div class="box-tools pull-right">
+        </div>  <!-- /.box-tools -->
+    </div> <!-- /.box-header -->
+    <div class="box-body">
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <a target="_blank" class="btn btn-primary" href="?controller=sinhvien&action=getlistsinhvien">Students
+                    -></a>
+            </div>
+            <div class="col-md-3">
+                <a target="_blank" class="btn btn-primary" href="?controller=themuon&action=getlistmuon">Cards -></a>
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-top: 30px;">
+            <form method="POST">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <label>Namebook</label>
+                        <input type="text" name="tensach" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <label>Author</label>
+                        <input type="text" name="tacgia" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <label>P_year</label>
+                        <input type="text" name="namsx" class="form-control">
+                    </div>
+                    <div class="col-md-3" style="margin-top: 23px;">
+                        <button name="themsach" class="btn btn-primary" type="submit">Add book</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-12" style="margin-top: 50px;">
+            <table id="example2" class="table table-bordered table-hover"
+                   style="width: 1000px;margin: auto;text-align: center">
+                <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Book</th>
+                    <th>Author</th>
+                    <th>P_year</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+				<?php
+				$a = 0;
+				foreach ($this->getBook() as $value) {
+					$a++;
+					?>
+                    <tr>
+                        <td><?= $a ?></td>
+                        <td><?= $value->namebook ?></td>
+                        <td><?= $value->author ?></td>
+                        <td><?= $value->p_year ?></td>
+                        <td>
+                            <a target="_blank" href="?controller=sach&action=updatesach&id=<?= $value->id ?>"
+                               class="btn btn-primary">Update</a>
+                        </td>
+                        <td><a href="?controller=sach&action=deletesach&id=<?= $value->id ?>" class="btn btn-danger"
+                               onclick="return xoa()">Delete</a>
+                        </td>
+                    </tr>
+					<?php
+				}
+				?>
+                </tbody>
+            </table>
+        </div>
+    </div> <!-- /.box-body -->
+    <div class="box-footer">
+    </div><!-- /.box-body -->
+</div><!-- /.box -->

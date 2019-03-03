@@ -1,0 +1,1 @@
+<h1 style="color: red;">Check lần 2 của {{$name}}</h1>

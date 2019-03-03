@@ -1,0 +1,14 @@
+RewriteEngine on
+RewriteRule ^sanpham.html$ sanpham.php
+
+# xem chi tiet san pham
+RewriteRule ^chi-tiet-san-pham-([0-9]+).html$ detail.php?id=$1
+
+# xem chi tiet san pham co kem theo ten nhom san pham
+RewriteRule ^list-product-([0-9]+)/$ detail.php?id=$1
+
+# cau truc chung cua link chi tiet san pham co kem nhom
+# ten-nhom-san-pham-/ten-san-pham-ID.html
+# khoi 1 danh cho ten nhom, kho 2 danh cho ten san pham cai cuoi danh cho ID,ki tu gach cheo giong nhu o # tren id=$3 tai cai cho id o vi tri so 3
+RewriteRule ^([a-z0-9\-_]+)/([a-z0-9\-_]+)-([0-9]+).html$ detail.php?id=$3
+#&ten_nhom=$1&tensp=$2

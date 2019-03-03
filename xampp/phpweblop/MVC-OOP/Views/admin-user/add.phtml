@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>add</title>
+</head>
+<body>
+
+<?php
+
+    if(isset($this->view->error)) {
+        foreach ($this->view->error as $msg) {
+            echo "<div>" . $msg . "</div>"; 
+        }
+    }
+    if(isset($this->view->success)){
+        foreach ($this->view->success as $msg) {
+            echo "<div>" . $msg . "</div>";
+        }
+    }
+
+?>
+    <form action="" method="post">
+        <table>
+            <tr>
+                <th>Username</th>
+                <td><input type="text" name="username"></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td><input type="text" name="email"></td>
+            </tr>
+            <tr>
+                <th>Họ tên</th>
+                <td><input type="text" name="ho_ten"></td>
+            </tr>
+            <tr>
+                <th>Ngày sinh</th>
+                <td><input type="text" name="ngay_sinh"></td>
+            </tr>
+            <tr>
+                <th>Giới tính</th>
+                <td><input type="text" name="gioi_tinh"></td>
+            </tr>
+            <tr>
+                <th>Điện thoại</th>
+                <td><input type="text" name="dien_thoai"></td>
+            </tr>
+            <tr>
+                <th>Địa chỉ</th>
+                <td><input type="text" name="dia_chi"></td>
+            </tr>
+            <tr>
+                <th>key</th>
+                <td><input type="number" name="key"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Đăng ký" name="ok"></td>
+            </tr>
+        </table>
+    </form>
+    <a href="?controller=admin-user&action=index">Quay lại</a>
+</body>
+</html>

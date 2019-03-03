@@ -1,0 +1,218 @@
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/ODelI1aHBYDBqgeIAH2zlNOAHFN6BivSraYkjhveRHY.woff2) format('woff2');
+}
+body.fbIndex {
+    background: url('https://images.pexels.com/photos/982378/nature-milky-way-galaxy-stars-982378.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')left center fixed !important;
+    -webkit-background-size: cover;
+    -moz-background-size: 100% !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    overflow-y: hidden
+}
+.loggedout_menubar_container {
+    background: none !important;
+}
+.fbIndex #globalContainer #dropmenu_container,
+.fbIndex #globalContainer #content,
+.fbIndex #globalContainer #pageFooter {
+    display: none !important
+}
+.fbIndex .loggedout_menubar_container {
+    position: fixed !important;
+    width: 420px !important;
+    height: 82px !important;
+    min-width: 0 !important;
+    top: 35% !important;
+    left: 35% !important;
+    margin-top: -17px !important;
+    margin-left: auto !important;
+    z-index: -1 !important;
+}
+.fbIndex .loggedout_menubar {
+    width: 500px !important;
+    height: 215px;
+    background-color: rgba(44, 44, 44, 0.36)!important;
+    padding: 0 10px 14px 10px;
+    box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.53);
+    transition: all .3s ease-out;
+    border-radius: 12px;
+}
+
+.fbIndex .loggedout_menubar:hover {
+   	background-color: rgba(90, 90, 90, 0.26)!important;
+    box-shadow: 0px 10px 30px 0px rgba(17, 17, 17, 0.49);
+}
+
+.fbIndex .loggedout_menubar_container .lfloat,
+.fbIndex .loggedout_menubar_container .rfloat {
+    float: none !important
+}
+.fbIndex .loggedout_menubar_container .lfloat img,
+.fbIndex .loggedout_menubar_container .rfloat #login_form table {
+    display: block !important;
+    margin: 50px auto 0 !important
+}
+.fbIndex .loggedout_menubar_container .lfloat img {
+    display: block;
+    margin: -60px auto 20px !important;
+}
+._5a-- {
+    display: none !important
+}
+#SetAsHomepage_Callout {
+    display: none;
+}
+
+/*INPUT*/
+td .inputtext, td .inputpassword {
+    background-color: transparent;
+    height:25px;
+    border-top-color: transparent!important;
+    border-right-color: transparent!important;
+    border-left-color: transparent!important;
+    border-bottom-color: #fff!important;
+transition: all .3s ease-out;
+    font-family: Montserrat,roboto, tahoma, arial, sans-serif!important;
+    color: #fff;
+    font-weight: normal;
+}
+td .inputtext {
+    font-family:Montserrat;
+text-transform: uppercase;
+}
+td .inputpassword {
+    font-family:Montserrat;
+font-size: 20px;
+}
+.inputtext:hover {
+    outline: none;
+}
+
+.inputtext:focus {
+    outline: none;
+}
+
+
+/*SUBMIT*/
+
+.uiButtonConfirm {
+    background-image: none!important;
+    background-color: transparent;
+    border-top-color: transparent!important;
+    border-right-color: transparent!important;
+    border-left-color: transparent!important;
+    border-bottom-color: #fff!important;
+    width: 82px;
+    height: 28px;
+    transition: all .3s ease-out;
+}
+
+.uiButtonConfirm:hover {
+    background-color: transparent;
+}
+
+.uiButtonConfirm:focus {
+    background-image: none!important;
+}
+
+
+.uiButton:focus, .uiButtonSuppressed:active, .uiButtonSuppressed:focus, .uiButtonSuppressed:hover {
+    background-image:none!important;
+}
+
+.uiButtonText, .uiButton 
+input {
+    border: 0;
+    color: #fff;
+    cursor: normal;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 35px;
+    transition: all .3s ease-out;
+    font-family: roboto, tahoma, arial, sans-serif!important
+}
+
+.uiButtonText, .uiButton 
+input:hover {
+    color: #888;
+    
+}
+
+.uiButtonText, .uiButton 
+input:focus {
+    background-image: none;
+    background-color: transparent!important;
+    outline: none;
+}
+/*LOGO*/
+.sp_7XMX65Pq0E7.sx_ccd1d2 {
+    margin: 10px;
+}
+
+/*LABEL'S*/
+.menu_login_container .html7magic label {
+    margin-top: 30px;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 10px;
+    font-weight: normal;
+    font-family: Source Sans Pro,roboto, tahoma, arial, sans-serif!important    
+}
+#login_form{
+margin-top: 50px;
+}
+/*OPCIONES ABAJO*/
+.menu_login_container .login_form_label_field label, .menu_login_container .login_form_label_field a {
+    color: #FFFFFF;
+    font-weight: normal;
+    font-family: roboto, tahoma, arial, sans-serif!important
+}
+._53jh {
+    background-color: #3b5998;
+    background-image: linear-gradient(#4e69a2, #3b5998 50%);
+    border-bottom:none;
+    min-height: 0px;
+}
+.sp_WQkjDN-lT6A_1_5x {
+    margin-left: 150px;
+    background-image: url(/rsrc.php/v3/yw/r/d0QgfwH16VF.png);
+    background-size: 170px 128px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 14px;
+    width: 14px;
+}
+/* button login */
+.uiButtonText, .uiButton input {
+    text-transform: uppercase;
+    border: 0;
+    color: #fff;
+    cursor: normal;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 35px;
+    transition: all .3s ease-out;
+    font-family: Source Sans Pro, sans-serif!important;
+}
+
+.uiButtonConfirm:active, .uiButtonConfirm.uiButtonDepressed {
+    background-color: rgba(192, 192, 192, 0.61);
+    border-color: rgba(192, 192, 192, 0.61);
+}
+.uiButtonConfirm:hover {
+    background-color: rgba(192, 192, 192, 0.61);
+    border-color: rgba(192, 192, 192, 0.61);
+}
+.uiButtonText, .uiButton input:hover {
+    color: #fff;
+}
+/*  */
+body{
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+}

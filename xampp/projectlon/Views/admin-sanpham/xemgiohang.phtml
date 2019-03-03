@@ -1,0 +1,102 @@
+<?php if(isset($_SESSION["email"]) && isset($_SESSION["dienthoai"])){ ?>
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				
+				<div id="main" class="col-lg-12">
+					<!-- store top filter -->
+					<div class="store-filter clearfix">
+						
+					</div>
+					<!-- /store top filter -->
+					<div id="store" style="margin-left: 17px;">
+						
+                       <div class="row"> 
+                <h2>Giỏ hàng của bạn</h2>
+                <a href="?controller=trangphu-sanpham&action=deletegiohang" style="color: blue;position: relative;top: -45px;float: right;font-size: 25px;">Thoát</a>
+                <table class="table" >
+                    <thead>
+                        <tr>
+                          
+                            <th>Email</th>
+                            <th>Số điện thoại</th>
+                            <th>Ngày mua</th>
+                            <th>Địa chỉ giao hàng</th>
+                            <th>Hình thức thanh toán</th>
+                            <th>Sách</th>
+                            <th>Hình ảnh</th>
+                            <th>Số lượng</th>
+                            <th>Giá tiền</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    if(isset($this->views->xemgiohang)){
+                   
+                    foreach ($this->views->xemgiohang as $key => $value) {
+                
+                     $images_url1 = base_path.'Public/image/'.$value["hinh_anh"];
+                     
+                    	
+                     ?>
+                        <tr>
+                            <td><?= $value["email"] ?></td>
+                            <td><?= $value["dien_thoai"] ?></td>
+                            <td><?= $value["ngay_mua"] ?></td>
+                            <td><?= $value["dia_chi_giao_hang"] ?></td>
+                            <td><?= $value["hinh_thuc_thanh_toan"] ?></td>
+                            <td><?= $value["ten_sach"] ?></td>
+                            <td><img src="<?= $images_url1 ?>" style="width: 35px;height: 40px; "></td>
+                            <td><?= $value["so_luong"] ?></td>
+                            <td><?= $value["gia_ban"] ?></td>
+                            <td>
+                            	<select >
+                            		<?php if($value["trang_thai"] == 1){ ?>
+                            		<option >Chưa giao</option>
+                            	<?php } else { ?>
+                            		<option >Đã giao</option>
+                            	<?php } ?>
+                            	</select>
+                            </td>             
+                        </tr>
+                        <?php }} ?>
+                    </tbody>
+                     <thead>
+                        <tr>
+                           
+                            <th>Email</th>
+                            <th>Số điện thoại</th>
+                            <th>Ngày mua</th>
+                            <th>Địa chỉ giao hàng</th>
+                            <th>Hình thức thanh toán</th>
+                            <th>Sách</th>
+                            <th>Hình ảnh</th>
+                            <th>Số lượng</th>
+                            <th>Giá tiền</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                </table>
+      
+            </div>
+			
+					<!-- /STORE -->
+					<!-- store bottom filter -->
+					<div class="store-filter clearfix">
+					
+					</div>
+					</div>
+					<!-- /store bottom filter -->
+				</div>
+				<!-- /MAIN -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+<?php } ?>
+
+

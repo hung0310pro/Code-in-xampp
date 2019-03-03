@@ -1,0 +1,42 @@
+<div class="login-box">
+  <div class="login-logo">
+    <?php
+
+    if(isset($this->views->error)) {
+        foreach ($this->views->error as $msg) {
+            echo "<div style='color:red;'>" . $msg . "</div>"; 
+        }
+    }
+?>
+    <a href="../../index2.html"><b>Xem Giỏ</b>Hàng</a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+
+    <p class="login-box-msg">Đăng nhập xem giỏ hàng của bạn</p>
+
+    <form action="" method="post">
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="Email" name="emailgiohang" id="emailgiohang">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <div style="color: red" id="emailgiohang1">xin mời bạn nhập Email bạn đã đăng ký mua hàng</div>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" placeholder="Số điện thoại" name="dtgiohang" id="dtgiohang">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        <div style="color: red" id="dtgiohang1">xin mời bạn nhập số điện thoại ban đã đăng ký mua hàng</div>
+      </div>
+      <div class="row">
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <input type="submit" value="Xem giỏ hàng" name="xemhang" id="xemhang">
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+  </div>
+  <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
+

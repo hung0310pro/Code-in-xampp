@@ -1,0 +1,28 @@
+<h1>Đăng nhập</h1>
+<?php
+	if(!empty($dataView['err'])){
+		foreach($dataView['err'] as $msg ){
+			echo '<p style="color:red">'.$msg.'</p>';
+		}
+	}
+?>
+
+<form action="" method="post">
+	<table>
+		<tr>
+			<td>Username</td>
+			<td><input type="text" name="txt_username"></td>
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td><input type="password" name="txt_pass"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<input type="submit" value=" Đăng nhập ">
+				<a href="?action=reg">Đăng ký</a>
+			</td>
+		</tr>
+	</table>
+</form>

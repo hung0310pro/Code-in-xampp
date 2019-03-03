@@ -1,0 +1,26 @@
+RewriteEngine On
+
+### START WWW & HTTPS
+### ht accesss chuyển từ http thường sang https
+### ensure www.
+
+#RewriteCond %{HTTP_HOST} !^www\. [NC]
+#RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ensure https
+#RewriteCond %{HTTP:X-Forwarded-Proto} !https
+#RewriteCond %{HTTPS} off
+#RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+### END WWW & HTTPS
+
+
+
+#RewriteEngine On
+Options +FollowSymlinks
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php?route=$1 [L,QSA]
+
+# /index.php?controller=article&action=list-category
+# chuyển thành link ảo: /article/list-category/param_1/value_1/param2/value2

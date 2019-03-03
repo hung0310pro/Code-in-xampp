@@ -1,0 +1,19 @@
+<?php
+	if(!is_array($dataView['sanpham'])){
+		echo '<p style="color:red">'.$dataView['sanpham'].'</p>';
+		return;
+	}
+
+	$sp = $dataView['sanpham'];
+ ?>
+
+<h1>
+	<?php echo $sp['ten_san_pham'];?>
+</h1>
+<img src="<?php echo base_path.'/'. $sp['images'];?>">
+
+- Giá bán: <br>
+<a href="#">Mua sản phẩm này</a>
+
+<hr>
+<?php echo $sp['noidung_chitiet'];?>

@@ -1,0 +1,93 @@
+<div class="box box-info">
+  <?php
+if(isset($this->views->error)) {
+        foreach ($this->views->error as $msg) {
+            echo "<div style='color:red;'>" . $msg . "</div>"; 
+        }
+    }
+
+
+  ?>
+            <div class="box-header with-border">
+              <h3 class="box-title">Chỉnh sửa thông tin nhân viên</h3>
+            </div>
+            <form class="form-horizontal" method="post" action="">
+              <div class="box-body">
+
+              	<div class="form-group">
+                  <label for="txt_hoten" class="col-sm-2 control-label" >Họ Tên</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="txt_hoten" placeholder="Họ tên" name="txt_hoten" value="<?=$this->views->row["ho_ten"]?>">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="txt_username" class="col-sm-2 control-label">Ngày sinh</label>
+
+                  <div class="col-sm-10">
+                    <input type="date" class="form-control" id="txt_ngaysinh" name="txt_ngaysinh" value="<?=$this->views->row["ngay_sinh"]?>">
+                  </div>
+                </div>
+                
+                 <div class="form-group">
+                  <label for="txt_passwd" class="col-sm-2 control-label">Giới tính</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="txt_gioitinh" placeholder="Giới tính" name="txt_gioitinh" value="<?=$this->views->row["gioi_tinh"]?>">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="txt_email" class="col-sm-2 control-label">Địa chỉ</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="txt_diachi" placeholder="Địa chỉ" name="txt_diachi" value="<?=$this->views->row["dia_chi"]?>">
+                  </div> 
+                </div>
+
+                <div class="form-group">
+                  <label for="txt_email" class="col-sm-2 control-label">Điện thoại</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="txt_dienthoai" placeholder="Điện thoại" name="txt_dienthoai" value="<?=$this->views->row["dien_thoai"]?>">
+                  </div> 
+                </div>
+
+                <div class="form-group">
+                  <label for="txt_email" class="col-sm-2 control-label">Email</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="txt_email" placeholder="Email" name="txt_email" value="<?=$this->views->row["email"]?>">
+                  </div> 
+                </div>
+              
+                <div class="form-group">
+                  <label for="slx_nhomtk" class="col-sm-2 control-label">Nhóm tài khoản</label>
+
+                  <div class="col-sm-10">
+                     <select name="slx_nhomtk" id="slx_nhomtk" class="form-control">
+		              <option value="0">== Chọn nhóm tài khoản ==</option>
+		             <?php
+                     if(isset($this->views->nhomtk)){
+                      foreach ($this->views->nhomtk as $ten_nhom) { ?>
+
+                         <option value="<?=$ten_nhom["id"]?>"><?=$ten_nhom["ten_nhom"]?></option>
+
+                  <?php       
+                    }}
+                  ?>
+		            </select>
+                  </div>
+
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+       
+                <input type="submit" name="update" id="update" value="Chỉnh sửa" style="float: right;">
+                <a href="?controller=danhsach&action=danhsachnhanvien">Quay lại</a>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>

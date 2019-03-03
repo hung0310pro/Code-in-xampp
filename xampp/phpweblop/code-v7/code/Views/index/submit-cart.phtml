@@ -1,0 +1,86 @@
+<h1 style="text-align:center; margin:10px">Thông tin giỏ hàng</h1>
+<?php 
+	if(!empty($dataView['err']))
+	{
+		foreach($dataView['err'] as $msg ){
+			echo '<p style="color:red">'.$msg.'</p>';
+		}
+	}
+
+	if(!empty($dataView['msg']))
+	{
+		foreach($dataView['msg'] as $msg ){
+			echo '<p style="color:blue">'.$msg.'</p>';
+		}
+	}
+
+
+?> 
+<form action="" method="post">
+<table border="1" style="border-collapse: collapse;" cellpadding="10" align="center">
+	<tr>
+		<th>STT</th>
+		<th>Tên sản phẩm</th>
+		<th>Số lượng</th>
+		<th>Đơn giá</th>
+		<th>Thành tiền</th>
+	</tr>
+
+	<?php
+		$stt = 0;
+		$tong_tien = 0;
+		$lis_sp = @$dataView['list_san_pham'];
+		if(!empty($lis_sp)){
+
+			// duyệt danh sách để in ra màn hình
+			foreach($_SESSION['cart'] as $id =>$soLuong){
+				$stt ++;
+				$ten_san_pham = '';
+				$don_gia = 0;
+				$thanh_tien = 0;
+
+				foreach($lis_sp  as $row ){
+					if($row['id'] == $id){
+						$ten_san_pham = $row['ten_san_pham'];
+						$don_gia = $row['gia_ban'];
+						$thanh_tien = $don_gia * $soLuong;
+						break;
+					}
+				}
+
+				$tong_tien += $thanh_tien;
+ 				echo "
+						<tr>
+							<td>$stt</td>
+							<td>$ten_san_pham </td>
+							<td>$soLuong</td>
+							<td>$don_gia</td>
+							<td>$thanh_tien</td>
+						</tr> 
+ 				"; 
+			} 
+
+		} 
+
+	 ?>
+	
+</table>
+
+<h2 style="text-align:center;">Thông tin khách hàng</h2>
+
+<b>Họ tên: <?php echo $_SESSION['auth']['ho_ten']; ?></b> <br>
+<b>Email: <?php echo $_SESSION['auth']['email']; ?></b> <br>
+<b>Địa chỉ giao hàng </b> <br>
+<textarea name="txt_diachi_giao_hang"><?php echo $_SESSION['auth']['dia_chi'];?></textarea> <br>
+Hình thức thanh toán: 
+<select name="slx_hinh_thuc_tt">
+	<?php
+		$arr = unserialize(hinh_thuc_thanh_toan);
+		foreach($arr as $k=>$v)
+			echo "<option value='$k'>$v</option>";
+	 ?>
+</select>
+<br>
+<input type="submit" name="btn_submit" value="Gửi đơn hàng">
+
+</form>

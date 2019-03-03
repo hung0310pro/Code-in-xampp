@@ -1,0 +1,11 @@
+<?php
+for ($i = 1; $i <= 10; $i++)
+{
+    if ($i == 5)
+    {
+        continue;
+    }
+    echo $i . ' ';
+}
+
+// bỏ qua số 5, bỏ qua bước đấy của nó

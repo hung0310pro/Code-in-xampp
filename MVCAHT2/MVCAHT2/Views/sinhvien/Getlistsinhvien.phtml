@@ -1,0 +1,135 @@
+<?php
+if (isset($_SESSION['erroraddsv'])) {
+	?>
+    <div class="alert alert-danger alert-dismissible">
+		<?php
+		foreach ($_SESSION['erroraddsv'] as $value) {
+			?>
+            <p style="color: white;font-size: 17px;">+ <?= $value ?></p>
+			<?php
+		}
+		?>
+    </div>
+	<?php
+	unset($_SESSION['erroraddsv']);
+}
+
+if (isset($_SESSION['updatesv'])) {
+	?>
+    <div class="alert alert-success alert-dismissible">
+        <p style="color: white;font-size: 17px;"><?= $_SESSION['updatesv'] ?></p>
+    </div>
+	<?php
+	unset($_SESSION['updatesv']);
+}
+
+if (isset($_SESSION['addsinhvien'])) {
+	?>
+    <div class="alert alert-success alert-dismissible">
+        <p style="color: white;font-size: 17px;"><?= $_SESSION['addsinhvien'] ?></p>
+    </div>
+	<?php
+	unset($_SESSION['addsinhvien']);
+}
+
+if (isset($_SESSION['deletesv'])) {
+	?>
+    <div class="alert alert-success alert-dismissible">
+        <p style="color: white;font-size: 17px;"><?= $_SESSION['deletesv'] ?></p>
+    </div>
+	<?php
+	unset($_SESSION['deletesv']);
+}
+
+?>
+<div class="box box-solid box-info" style="border: 1px solid #00a65a;">
+    <div class="box-header with-border" style="background: #00a65a;">
+        <h3 class="box-title" style="color: white;">Thông tin sinh viên</h3>
+        <div class="box-tools pull-right">
+        </div>  <!-- /.box-tools -->
+    </div> <!-- /.box-header -->
+    <div class="box-body">
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <a target="_blank" class="btn btn-primary" href="?controller=sach&action=getlistsachs">Books -></a>
+            </div>
+            <div class="col-md-3">
+                <a target="_blank" class="btn btn-primary" href="?controller=themuon&action=getlistmuon">Cards -></a>
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-top: 30px;">
+            <form method="POST">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <label>Name</label>
+                        <input type="text" name="tensv" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <label>Birthday</label>
+                        <input type="date" name="ngaysinh" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <label>Age</label>
+                        <input type="number" name="tuoi" class="form-control">
+                    </div>
+                    <div class=" col-md-3">
+                        <label>Class</label>
+                        <input type="text" name="lop" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-12" style="margin-top: 20px;">
+                    <div class="col-md-3">
+                        <button name="themsv" class="btn btn-primary" type="submit">Add student</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-12" style="margin-top: 50px;">
+            <table id="example2" class="table table-bordered table-hover"
+                   style="width: 1000px;margin: auto;text-align: center">
+                <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Name</th>
+                    <th>Birthday</th>
+                    <th>Class</th>
+                    <th>Detail</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+				<?php
+				$a = 0;
+				foreach ($this->getStudents() as $value) {
+					$a++;
+					?>
+                    <tr>
+                        <td><?= $a ?></td>
+                        <td><?= $value->name ?></td>
+                        <td><?= date('d-m-Y', strtotime($value->birthday)); ?></td>
+                        <td><?= $value->class ?></td>
+                        <td>
+                            <a href="?controller=sinhvien&action=watchdetail&id=<?= $value->id ?>"
+                               class="btn btn-success">Detail</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="?controller=sinhvien&action=updatesinhvien&id=<?= $value->id ?>"
+                               class="btn btn-primary">Update</a>
+                        </td>
+                        <td>
+                            <a href="?controller=sinhvien&action=deletesinhvien&id=<?= $value->id ?>"
+                               class="btn btn-danger"
+                               onclick="return xoa()">Delete</a>
+                        </td>
+                    </tr>
+					<?php
+				}
+				?>
+                </tbody>
+            </table>
+        </div>
+    </div> <!-- /.box-body -->
+    <div class="box-footer">
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
